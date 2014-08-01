@@ -1,0 +1,64 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage[british]{babel}
+\usepackage[hyphens]{url}
+\usepackage{graphicx}
+\usepackage[noadjust]{cite}
+\usepackage[pdftex,colorlinks=true]{hyperref}
+
+\begin{document}
+\bstctlcite{IEEEexample:BSTcontrol}
+
+% still not happy with the title...
+\title{``Reproducibility-as-a-Service'': Dream or Reality?}
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{\IEEEauthorblockN{Tom Crick}
+\IEEEauthorblockA{Department of Computing\\
+Cardiff Metropolitan University\\
+Cardiff, UK\\
+Email: {\url{tcrick@cardiffmet.ac.uk}}}
+\and
+\IEEEauthorblockN{Kenji Takeda}
+\IEEEauthorblockA{Microsoft Research\\
+Cambridge, UK\\
+Email: {\url{kenji.takeda@microsoft.com}}}
+\and
+\IEEEauthorblockN{Benjamin A. Hall}
+\IEEEauthorblockA{Microsoft Research\\
+Cambridge, UK\\
+Email: {\url{benhall@microsoft.com}}}
+\and
+\IEEEauthorblockN{Samin Ishtiaq}
+\IEEEauthorblockA{Microsoft Research\\
+Cambridge, UK\\
+Email: {\url{samin.ishtiaq@microsoft.com}}} }
+
+\maketitle
+
+\begin{abstract}
+Abstract here...
+\end{abstract}
+
+\IEEEpeerreviewmaketitle
+
+\section{Introduction}
+
+Cite our WSSSPE2 paper~\cite{crick-et-al_wssspe2}...
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+% \IEEEtriggeratref{37}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+
+% BibTeX users
+\bibliographystyle{IEEEtran}
+\bibliography{recomp2014}
+
+\end{document}
