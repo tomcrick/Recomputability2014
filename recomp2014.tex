@@ -62,11 +62,44 @@ to specifically discuss the role of benchmark sets and analysis.
 
 Specify details such as rounding behaviour in the model
 
+\section{Protocols as scripts}
+
+Benchmarking is not always as trivial as grab some code, grab the 
+existing data, and run. Data format conversions may be non-trivial
+or performed manually. These may involve external scripts, which 
+might not be part of any of the explicitly shared code. Open 
+protocols may aid the reproducibility of benchmark results. Even 
+better would be tools which aid the transformation of text based
+protocols into real scripts.
+
+
 \section{Performance and scalability}
 
-Slow VMs in the cloud to test scalability properties of algorithm
+One big target for HPC users is scalability of code (e.g. gromacs,
+NAMD, Desmond). Here the aim is to make simulations run more efficiently
+over large numbers of cores/nodes. Scaling results however may be 
+hard to reproduce without access to significant resource.
 
-\section{}
+If speed isn't being explicitly tested, on-demand cloud resources 
+may offer a route to testing small systems. Slow VMs in the cloud
+may test scalability properties of algorithm without requiring access
+to always on-resource. \emph{NOTE- DOES THIS SOUND SENSIBLE?}
+
+
+\section{Benchmark repositories and annotation}
+
+Benchmarks as unit tests, stored in central repositories. An API 
+for benchmarks? Treat benchmark sets as a curated set of unit tests
+
+\section{Benchmarks as a service}
+
+Code interacts with benchmarks in a reliable way. We want to share
+code, and have proposed a mechanism for doing this~\cite{crick-et-al_wssspe2}.
+Explicitly link online repositories of code to benchmark sets and
+results. Allows reproduction of benchmark results from a paper, 
+but also trivial expansion of benchmarking by linking to other 
+available datasets.
+
 
 % trigger a \newpage just before the given reference
 % number - used to balance the columns on the last page
