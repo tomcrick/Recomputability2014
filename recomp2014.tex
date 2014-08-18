@@ -34,17 +34,50 @@ Abstract here...
 
 \IEEEpeerreviewmaketitle
 
-\section{Introduction}
+\section{Introduction- reproducibility in the compuational sciences}
+
+Two key types of results arise from work done in the computational sciences; models 
+and algorithms. Models represent an abstraction of reality, and their behaviour is
+expected to reliably reproduced if different algorithms are used. This validation
+of a models behaviour can be impacted by a number of factors relating to the specific
+techniques used, but similar approaches are expected to give the same broad results. 
+In contrast, when new algorithms are proposed to replace or supplement existing 
+algorithms, they are expected to verifiably replicate the results of other algorithms.
+
+Neither class of result though exists in isolation; a new algorithm is dependent on 
+a set of models (or benchmarks) to demonstrate its new capabilities. Equally, model 
+development can both necessitate the development of new algorithms and highlight the 
+differences between alternative approaches. Whilst algorithms and their implementations
+have been highlighted as a potential barrier to reproducibility~\cite{crick-et-al_wssspe2},
+here we discuss the value of improved access and sharing of models in avoiding mistakes
+and in generating new scientific insights. 
 
 % there are a lot of Rs in this domain:
 % Replacing the Paper: The Twelve Rs of the e-Research Record~\cite{deroure:2010}
 % http://www.scilogs.com/eresearch/replacing-the-paper-the-twelve-rs-of-the-e-research-record/
+
+\section{Motivation}
 The reproduction and replication of reported scientific results is a
-topic of growing concern within the scientific
-community~\cite{barnes:2010,morin-et-al:2012,joppa-et-al:2013}. Whilst
-experimental work requires detailed protocol descriptions, computer
+widely discussed topic within the scientific community~\cite{barnes:2010,morin-et-al:2012,joppa-et-al:2013}. 
+Whilst the retraction of several studies has drawn the focus of many
+commenters, automated systems, which allow easy reproduction of results, offer the 
+potential to improve the efficiency of scientific exploration and drive the
+adoption of new techniques. 
+
+New tools for membrane protein simulation~\cite{Stansfeld,hall2014} demonstrate
+how complex workflows can be automated, preventing errors and differences 
+arising from manual execution, whilst making it faster to perform new 
+analyses. 
+Alongside this, recent work in executable biology~\cite{Cook} showed how
+a new class of models, representing a defined property of biological networks,
+defeated an existing algorithm for proving stability. As such, it was the 
+broader application of a new algorithm to additional models (or benchmarks)
+which highlighted an unexplored but important phenomena the algorithm could 
+not address.
+
+Whilst experimental work requires detailed protocol descriptions, computer
 science and computational science disciplines uniquely are
-able to share the raw outputs of their work- the software. Despite
+able to share the raw outputs of their work as software and standard format datafiles. Despite
 this advantage, and alongside ongoing -- and significant -- changes to the
 traditional models of academic dissemination and
 publication~\cite{deroure:2010,stodden-et-al:2013,fursin+dubach:2014},
@@ -75,7 +108,9 @@ industrial lab''~\cite{osherovich:2011}.
 In the cloud world, we have IaaS, PaaS and SaaS...do we need RaaS:
 ``Reproducibility-as-a-Service''?
 
-\section{Implementation or model?}
+\section{Roads to reproducibility}
+
+\subsection{Implementation or model?}
 
 Specify details such as rounding behaviour in the model
 
@@ -86,7 +121,7 @@ Specify details such as rounding behaviour in the model
 % computational hardware.
 
 
-\section{Protocols as scripts}
+\subsection{Protocols as scripts}
 
 Benchmarking is not always as trivial as grab some code, grab the 
 existing data, and run. Data format conversions may be non-trivial
@@ -97,7 +132,7 @@ better would be tools which aid the transformation of text based
 protocols into real scripts.
 
 
-\section{Performance and scalability}
+\subsection{Performance and scalability}
 
 One big target for HPC users is scalability of code (e.g. gromacs,
 NAMD, Desmond). Here the aim is to make simulations run more efficiently
@@ -107,17 +142,26 @@ hard to reproduce without access to significant resource.
 If speed isn't being explicitly tested, on-demand cloud resources 
 may offer a route to testing small systems. Slow VMs in the cloud
 may test scalability properties of algorithm without requiring access
-to always on-resource. \emph{NOTE- DOES THIS SOUND SENSIBLE?}
+to always on-resource.
 
-
-\section{Benchmark repositories and annotation}
+\subsection{Benchmark repositories and annotation}
 
 Benchmarks as unit tests, stored in central repositories. An API 
 for benchmarks? Treat benchmark sets as a curated set of unit tests
 
 Perhaps cite Fursin et al.~\cite{fursin-et-al:2014} here as an example?
 
-\section{Benchmarks as a service}
+\subsection{Real worlds examples}
+
+Existing approaches
+	c.f. Codalab, Kaggle
+	SMTComp, SMT Lib
+	e.g. real-world validation - AIAA drag benchmarks, ERCOFTAC
+
+	Possibly CAPRI/CASP? (protein interaction and folding competitions)
+
+
+\section{Continuous integration for models}
 
 Code interacts with benchmarks in a reliable way. We want to share
 code, and have proposed a mechanism for doing this~\cite{crick-et-al_wssspe2}.
@@ -125,6 +169,24 @@ Explicitly link online repositories of code to benchmark sets and
 results. Allows reproduction of benchmark results from a paper, 
 but also trivial expansion of benchmarking by linking to other 
 available datasets.
+
+\subsection{Composibility and unit testing}
+
+
+
+\subsection{How to assess performance?}
+
+Wallclock vs op count
+
+\section{Future outlook}
+
+A system as described here has several up front benefits- it link papers 
+more closely to their outputs, making external validation easier and 
+allowing interested users to explore unaddressed sets of models. These 
+features alone will be expected to accelerate the research cycle, with
+major benefits. \emph{4th paradigm}.
+
+Limitations presented by big data- will some models resist validation?
 
 
 % trigger a \newpage just before the given reference
