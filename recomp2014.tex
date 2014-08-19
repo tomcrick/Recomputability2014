@@ -111,6 +111,16 @@ In the cloud world, we have IaaS, PaaS and SaaS...do we need RaaS:
 
 \section{Roads to reproducibility}
 
+SI/Ben: A section about the ``How'', and the barriers to the How. 
+
+SI: inline these examples through out the section: 
+	c.f. Codalab, Kaggle
+	SMTComp, SMT Lib
+	e.g. real-world validation - AIAA drag benchmarks, ERCOFTAC
+
+	Possibly CAPRI/CASP? (protein interaction and folding competitions)
+
+
 \subsection{Implementation or model?}
 
 SI: is this section meant to be about how abstract (vs concrete) the model is? 
@@ -128,7 +138,7 @@ Specify details such as rounding behaviour in the model.
 
 \subsection{Protocols as scripts}
 
-SI: By 'protocol' you mean what others call 'work-flow'? 
+'protocol' = 'work-flow'. 
 
 Benchmarking is not always as trivial as grab some code, grab the 
 existing data, and run. Data format conversions may be non-trivial
@@ -138,6 +148,10 @@ protocols may aid the reproducibility of benchmark results. Even
 better would be tools which aid the transformation of text based
 protocols into real scripts.
 
+
+Ben's example: get original model, do energy minimiztion, do some other transform, do energy minimization again. 
+
+electronic lab books. Can't delete any of your notes. Oxford structural genomics labbooks. 
 
 \subsection{Performance and scalability}
 
@@ -163,15 +177,6 @@ Benchmarks as unit tests, stored in central repositories. An API
 for benchmarks? Treat benchmark sets as a curated set of unit tests
 
 Perhaps cite Fursin et al.~\cite{fursin-et-al:2014} here as an example?
-
-\subsection{Real worlds examples}
-
-Existing approaches
-	c.f. Codalab, Kaggle
-	SMTComp, SMT Lib
-	e.g. real-world validation - AIAA drag benchmarks, ERCOFTAC
-
-	Possibly CAPRI/CASP? (protein interaction and folding competitions)
 
 
 \section{Continuous integration for models}
