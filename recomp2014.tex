@@ -113,7 +113,11 @@ In the cloud world, we have IaaS, PaaS and SaaS...do we need RaaS:
 
 \subsection{Implementation or model?}
 
-Specify details such as rounding behaviour in the model
+SI: is this section meant to be about how abstract (vs concrete) the model is? 
+
+Specify details such as rounding behaviour in the model.
+
+
 
 % Explicitly a ``protocol'' – explicit steps, copy-paste, customisable,
 % versioned; not black box.
@@ -123,6 +127,8 @@ Specify details such as rounding behaviour in the model
 
 
 \subsection{Protocols as scripts}
+
+SI: By 'protocol' you mean what others call 'work-flow'? 
 
 Benchmarking is not always as trivial as grab some code, grab the 
 existing data, and run. Data format conversions may be non-trivial
@@ -144,6 +150,12 @@ If speed isn't being explicitly tested, on-demand cloud resources
 may offer a route to testing small systems. Slow VMs in the cloud
 may test scalability properties of algorithm without requiring access
 to always on-resource.
+
+SI: I wonder also if cloud providers can give some metric of what
+load/latency/resources your job was run under.  That way, you could
+calculate how your performance would scale up had you access to the
+full resources. 
+
 
 \subsection{Benchmark repositories and annotation}
 
