@@ -106,8 +106,7 @@ Quote: ``at least 50\% of published studies, even those in top-tier
 academic journals, can't be repeated with the same conclusions by an
 industrial lab''~\cite{osherovich:2011}.
 
-In the cloud world, we have IaaS, PaaS and SaaS...do we need RaaS:
-``Reproducibility-as-a-Service''?
+%In the cloud world, we have IaaS, PaaS and SaaS...do we need RaaS: ``Reproducibility-as-a-Service''?
 
 \section{Roads to reproducibility}
 
@@ -117,17 +116,15 @@ SI: inline these examples through out the section:
 	c.f. Codalab, Kaggle
 	SMTComp, SMT Lib
 	e.g. real-world validation - AIAA drag benchmarks, ERCOFTAC
-
 	Possibly CAPRI/CASP? (protein interaction and folding competitions)
 
 
 \subsection{Implementation or model?}
 
-SI: is this section meant to be about how abstract (vs concrete) the model is? 
 
 Specify details such as rounding behaviour in the model.
 
-
+Include other examples of how abstract (vs concrete) the model should/could be. 
 
 % Explicitly a ``protocol'' – explicit steps, copy-paste, customisable,
 % versioned; not black box.
@@ -190,11 +187,22 @@ available datasets.
 
 \subsection{Composibility and unit testing}
 
+In computer science, ``composability'' is a major concept. You are
+meant to be able to put parts together. For instance, you should be
+able to prove a property of X and of Y separately, and when you
+combine X and Y, $X \oplus Y$, in some way, you should preserve that
+property.  This is not the case in my other fields like machine
+learning, computational science etc. Often, the nature of the problem
+is that it's not understood how to decompose. Decomposability 
+enables unit testing. 
+
 
 
 \subsection{How to assess performance?}
 
 Wallclock vs op count
+
+Other structural properties. 
 
 \section{Future outlook}
 
