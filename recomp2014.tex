@@ -207,17 +207,45 @@ things.
 
 netflix competition. 
 
-\section{Continuous integration for models}
+\section{CI for models}
 
 %Samin section 
 
+The whole premiss of this paper is that Algorithms (implementations)
+and Models (benchmarks) go together: algorithms are designed for
+certain types of models; models, though created to mimic some physical
+reality, also serve to stress the current known algorithms. A
+cloud-based service can make this link explicit.
 
-Code interacts with benchmarks in a reliable way. We want to share
-code, and have proposed a mechanism for doing this~\cite{crick-et-al_wssspe2}.
-Explicitly link online repositories of code to benchmark sets and
-results. Allows reproduction of benchmark results from a paper, 
-but also trivial expansion of benchmarking by linking to other 
-available datasets.
+Wind back several decades, and no one would ``cvs commit'' to a
+serious project without running the smoke tests. Later, you could be
+cleverer and run the tests via the VCS's pre-commit hook. That way
+you'd never forget to run the tests. All of this can be done, at
+scale, on the cloud now. Services such as Jenkins, Visual Studio
+Online, etc schedule the tests to run as soon as you commit. Suppose
+we have the publicly accesssible benchmarks. It seems a small step to
+hook these Continuous Integration (CI) systems up to the algorithm
+implementations that are written to run on these benchmarks.
+
+Suppose you have come up with a better algorithm to deal with some of
+these benchmarks. You write up the paper on the algorithm but, more
+importantly, you also register the implementation of your algorithm at
+the service, as a possible algorithm to run on this benchmark set.
+
+The benchmarks live in distributed git repositories. Some of the
+servers that house these repos are CI servers. Now, when you push a
+commit to your algorithm, or someone else pushes a commit to theirs,
+or when someone else adds a new benchmarks, the service's CI system is
+activated. It is also activated when a new library, firmware upgrade,
+new API change, etc happens too. All registered algorithms are run on
+all registered models, and the results are published. The CI servers
+act as the kernel.org, the authoritative source, of results for these
+algorithms running on these benchmarks.
+
+There are already several web services that nearly do all of this. A
+service that is just a bit more finished, that ties up the loose ends,
+would mean that algorithms and model would evolve together, and always
+be reproducible.
 
 \subsection{Composibility and unit testing}
 
