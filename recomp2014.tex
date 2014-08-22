@@ -125,7 +125,7 @@ Need to inline these examples through out the section:
 
 
 \subsection{Implementation or model?}
-%Tom's section?
+%Ben/Samin section 
 
 Specify details such as rounding behaviour in the model.
 
@@ -139,6 +139,8 @@ Include other examples of how abstract (vs concrete) the model should/could be.
 
 
 \subsection{Protocols as scripts}
+
+%Ben/Samin section
 
 'protocol' = 'work-flow'. 
 
@@ -157,7 +159,11 @@ Ben's example: get original model, do energy minimiztion, do some other transfor
 electronic lab books. Can't delete any of your notes. Oxford structural genomics labbooks. 
 
 \subsection{Performance and scalability}
+
 %Kenji to work on this
+
+{How to assess performance?}
+
 One big target for HPC users is scalability of code (e.g. gromacs,
 NAMD, Desmond). Here the aim is to make simulations run more efficiently
 over large numbers of cores/nodes. Scaling results however may be 
@@ -174,9 +180,13 @@ calculate how your performance would scale up had you access to the
 full resources. 
 
 
+Wallclock vs op count
+
+Other structural properties like termination, stability, etc. 
+
 \subsection{Benchmark repositories and annotation}
 
-%Kenji to work on this
+%Tom section 
 
 Benchmarks as unit tests, stored in central repositories. 
 Treat benchmark sets as a curated set of unit tests
@@ -197,7 +207,7 @@ things.
 
 \section{Continuous integration for models}
 
-%Tom?
+%Samin section 
 
 
 Code interacts with benchmarks in a reliable way. We want to share
@@ -208,7 +218,8 @@ but also trivial expansion of benchmarking by linking to other
 available datasets.
 
 \subsection{Composibility and unit testing}
-%Tom?
+
+%Samin section 
 In computer science, ``composability'' is a major concept. You are
 meant to be able to put parts together. For instance, you should be
 able to prove a property of X and of Y separately, and when you
@@ -220,12 +231,6 @@ enables unit testing.
 
 
 
-\subsection{How to assess performance?}
-
-%Kenji to work on this
-Wallclock vs op count
-
-Samin: Other structural properties like termination, stability, etc. 
 
 \section{Future outlook}
 
