@@ -12,7 +12,8 @@
 % still not happy with the title...
 %\title{``Reproducibility-as-a-Service'': Dream or Reality?}
 %\title{On Usefully Publishing Scientific Models} 
-\title{Learning to share: usefully publishing scientific models}
+%\title{Learning to share: usefully publishing scientific models}
+\title{Learning to share: publishing useful scientific models}
 
 % author names and affiliations
 % use a multiple column layout for up to three different
@@ -36,26 +37,32 @@ Abstract here...
 
 \IEEEpeerreviewmaketitle
 
-\section{Introduction- reproducibility in the compuational sciences}
-Two key types of results arise from work done in the computational sciences; models 
-and algorithms. Models represent an abstraction of reality, and their behaviour is
-expected to reliably reproduced if different algorithms are used. This validation
-of a model's behaviour can be impacted by a number of factors relating to the specific
-techniques used, but similar approaches are expected to give the same broad results. 
-In contrast, when new algorithms are proposed to replace or supplement existing 
-algorithms, they are expected to verifiably replicate the results of other algorithms.
+\section{Introduction: reproducibility in the computational sciences}
+Two key types of results arise from work done in the computational
+sciences: models and algorithms. Models represent an abstraction of
+reality, and their behaviour is expected to reliably reproduced if
+different algorithms are used. This validation of a model's behaviour
+can be impacted by a number of factors relating to the specific
+techniques used, but similar approaches are expected to give the same
+broad results.  In contrast, when new algorithms are proposed to
+replace or supplement existing algorithms, they are expected to
+verifiably replicate the results of other algorithms.
 
-Neither class of result though exists in isolation; a new algorithm is dependent on 
-a set of models (or benchmarks) to demonstrate its new capabilities. Equally, model 
-development can both necessitate the development of new algorithms and highlight the 
-differences between alternative approaches. Whilst algorithms and their implementations
-have been highlighted as a potential barrier to reproducibility~\cite{crick-et-al_wssspe2},
-here we discuss the value of improved access and sharing of models in avoiding mistakes
-and in generating new scientific insights. We describe efforts to reproduce computational 
-models and algorithms, specifically the many issues related to benchmarks of models and 
-algorithms. We conclude with thoughts on where efforts should be fcussed in both the short- 
-and long-term to move to a world in which computational reproducibility helps researchers 
-achieve their goals, rather than being perceived as an overhead.
+Neither class of result though exists in isolation; a new algorithm is
+dependent on a set of models (or benchmarks) to demonstrate its new
+capabilities. Equally, model development can both necessitate the
+development of new algorithms and highlight the differences between
+alternative approaches. Whilst algorithms and their implementations
+have been highlighted as a potential barrier to
+reproducibility~\cite{crick-et-al_wssspe2}, here we discuss the value
+of improved access and sharing of models in avoiding mistakes and in
+generating new scientific insights. We describe efforts to reproduce
+computational models and algorithms, specifically the many issues
+related to benchmarks of models and algorithms. We conclude with
+thoughts on where efforts should be focused in both the short- and
+long-term to move to a world in which computational reproducibility
+helps researchers achieve their goals, rather than being perceived as
+an overhead.
 
 % there are a lot of Rs in this domain:
 % Replacing the Paper: The Twelve Rs of the e-Research Record~\cite{deroure:2010}
@@ -63,35 +70,41 @@ achieve their goals, rather than being perceived as an overhead.
 
 \section{Motivation}
 The reproduction and replication of reported scientific results is a
-widely discussed topic within the scientific community~\cite{barnes:2010,morin-et-al:2012,joppa-et-al:2013}. 
+widely discussed topic within the scientific
+community~\cite{barnes:2010,morin-et-al:2012,joppa-et-al:2013}.
 Whilst the retraction of several studies has drawn the focus of many
-commenters, automated systems, which allow easy reproduction of results, offer the 
-potential to improve the efficiency of scientific exploration and drive the
-adoption of new techniques. 
+commenters, automated systems, which allow easy reproduction of
+results, offer the potential to improve the efficiency of scientific
+exploration and drive the adoption of new techniques. Nevertheless,
+this is wider socio-cultural problem that pervades the scientific
+community, with ``at least 50\% of published studies, even those in
+top-tier academic journals, can't be repeated with the same
+conclusions by an industrial lab''~\cite{osherovich:2011}.
 
-New tools for membrane protein simulation~\cite{Stansfeld,Hall2014} demonstrate
-how complex workflows can be automated, preventing errors and differences 
-arising from manual execution, whilst making it faster to perform new 
-analyses. 
-Alongside this, recent work in executable biology~\cite{Cook} showed how
-a new class of models, representing a defined property of biological networks,
-defeated an existing algorithm for proving stability. As such, it was the 
-broader application of a new algorithm to additional models (or benchmarks)
-which highlighted an unexplored but important phenomena the algorithm could 
-not address.
+New tools for membrane protein simulation~\cite{Stansfeld,Hall2014}
+demonstrate how complex workflows can be automated, preventing errors
+and differences arising from manual execution, whilst making it faster
+to perform new analyses.  Alongside this, recent work in executable
+biology~\cite{Cook} showed how a new class of models, representing a
+defined property of biological networks, defeated an existing
+algorithm for proving stability. As such, it was the broader
+application of a new algorithm to additional models (or benchmarks)
+which highlighted an unexplored but important phenomena the algorithm
+could not address.
 
-Whilst experimental work requires detailed protocol descriptions, computer
-science and computational science disciplines uniquely are
-able to share the raw outputs of their work as software and standard format datafiles. Despite
-this advantage, and alongside ongoing -- and significant -- changes to the
-traditional models of academic dissemination and
+Whilst experimental work requires detailed protocol descriptions,
+computer science and the computational science disciplines uniquely
+are able to share the raw outputs of their work as software and
+standard format datafiles. Despite this advantage, and alongside
+ongoing -- and significant -- changes to the traditional models of
+academic dissemination and
 publication~\cite{deroure:2010,stodden-et-al:2013,fursin+dubach:2014},
-there remain cultural and technical barriers to both the
-sharing and reimplementation of
-algorithms~\cite{crick-et-al_wssspe2}. These include widely discussed
-topics, such as choices of programming language and licence, as well
-as unreported technical details of the implementations and ensuring
-that developers get credit for their work.
+there remain cultural and technical barriers to both the sharing and
+reimplementation of algorithms~\cite{crick-et-al_wssspe2}. These
+include widely discussed topics, such as choices of programming
+language and licence, as well as unreported technical details of the
+implementations and ensuring that developers get credit for their
+work.
 
 % further to #overlyhonestmethods...
 % http://www.phdcomics.com/comics.php?f=1689
@@ -105,10 +118,6 @@ Furthermore, for high performance computing applications, repeating
 benchmark results may not be possible by other groups without equivalent
 resources. Here we extend a previous proposal~\cite{crick-et-al_wssspe2}
 to specifically discuss the role of benchmark sets and analysis.
-
-Quote: ``at least 50\% of published studies, even those in top-tier
-academic journals, can't be repeated with the same conclusions by an
-industrial lab''~\cite{osherovich:2011}.
 
 %In the cloud world, we have IaaS, PaaS and SaaS...do we need RaaS: ``Reproducibility-as-a-Service''?
 
