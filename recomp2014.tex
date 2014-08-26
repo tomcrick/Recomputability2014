@@ -127,7 +127,26 @@ Need to inline these examples through out the section:
 \subsection{Implementation or model?}
 %Ben/Samin section 
 
-Specify details such as rounding behaviour in the model.
+Published models require basic information to allow the models to be
+explored. On the most basic level, this can include techniques to allow
+files to be parsed, but in this parsing errors may arise from details 
+stored in the original implementations of the model analysis algorithms.
+A simple example arises from the treatment of floating point conversions
+in qualitative networks in systems biology~\cite{Schaub2007}. Each
+variable in a network has an algebraic target function which describes
+how the variable should change at each step. The variables themselves are
+integers, and the target function may return a float, which must be converted
+to an integer for the update. This can be done in the target function 
+itself, but if the function returns a float the specific implementation
+dictates if this is a round, floor or ceil function. As such, this behaviour
+from the implmentation may change the results of the modelling.
+
+An alternative example showing how the implementation of qualitative networks
+may change the model is the treatment of variable ranges within the model.
+Whilst the formalism allows the variables in a model to have differing 
+ranges of integers, the mechanism of conversion is not specified in the 
+formalism. As such, this is another area where implementations can dictate
+the precise behaviour of the model, and needs to be explicitly reported.
 
 Include other examples of how abstract (vs concrete) the model should/could be. 
 
