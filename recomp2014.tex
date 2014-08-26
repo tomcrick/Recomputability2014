@@ -322,7 +322,7 @@ be reproducible.
 The concept of "composability" is a very fundamental one in computer science. 
 That $h = f;g : A \rightarrow C$ and $f : A \rightarrow B$ and $g : A \rightarrow C$ 
 in some category with structure means that, if $f$ has property $P$ and $g$ has
-property $Q$, then $hj$ has property $P \oplus Q$, where $\oplus$ is some 
+property $Q$, then $h$ has property $P \oplus Q$, where $\oplus$ is some 
 combinatorial operator in the domain of discourse. What this abstract 
 characterization means is that a program can be tested by testing it's parts,
 whole system testing can be done by unit testing. 
@@ -332,8 +332,8 @@ many important areas like machine learning, computational science, and CFD,
 the models aren't often decomposable.  We haven't been explicit about it ---
 people normally aren't, especially for models ---  but we have been discussing
 algorithms and models assuming that they are very gross objects. We haven't
-required them to be composable or de-composable. What can this mnean
-practically? If we have an algorithm $A$ that claims to  run on model $M$ with
+required them to be composable or de-composable. What can this mean
+practically? If we have an algorithm $A$ that claims to run on model $M$ with
 result $R$, then there's no reason to assume that a slight modification of $A$
 will also have result $R$. Or that $A$ running on a $M * N$, for some operator
 $*$, has a suitably extended $R$ result.
