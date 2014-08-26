@@ -142,15 +142,37 @@ Include other examples of how abstract (vs concrete) the model should/could be.
 
 %Ben/Samin section
 
-'protocol' = 'work-flow'. 
+%'protocol' = 'work-flow'. 
 
-Benchmarking is not always as trivial as grab some code, grab the 
-existing data, and run. Data format conversions may be non-trivial
-or performed manually. These may involve external scripts, which 
-might not be part of any of the explicitly shared code. Open 
-protocols may aid the reproducibility of benchmark results. Even 
-better would be tools which aid the transformation of text based
-protocols into real scripts.
+Studying the behaviours of complex models is not trivial. Whilst 
+concise methods sections of papers may give a representative minimal
+protocol (or work-flow), missing details may present barriers to 
+the reproduction. This is exacerbated by the inclusion of manual 
+transformation steps which may subtly change the model. Data format 
+conversions may be non-trivial or performed manually. These may 
+involve external scripts, which might not be part of any of the
+explicitly shared code. This can be supported by open protocols, stored 
+in electronic lab notebooks during the process of model building. However
+even in this case, assumed knowledge may prevent simple replicates.
+%Even better would be tools which aid the transformation of text based
+%protocols into real scripts.
+
+One common approach to tackling complex protocols (or work-flows) 
+in computational sciences is to automate the process by scripting
+the laborious elements. In its initial steps, Sidekick~\cite{Hall2014}
+builds an initial model of a $\alpha$-helical peptide, performs an
+energy minisation of the peptide \emph{in vacuo}, solvates the peptide,
+adds counter-ions, and runs a second energy minimisation. This is all
+done without any user actions, and the subsequent replicates are performed
+with different random seeds to collect accuate statistics. Even in this 
+ideal case however, variations may arise between replicates. In testing 
+on a mixed AMD/Intel cluster, it was found that the solvation step added
+a variable number of water molecules. In a molecular dynamics simulation, 
+this is sufficient to cause two simulations with otherwise identical 
+starting states to diverge over time. As such, the inherent properties
+of the model and simulation should be taken into account in the overall
+protocol design, and noted in any attempts to reproduce the behaviour.
+
 
 Eg Codalab
 
