@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 \usepackage[noadjust]{cite}
 \usepackage[pdftex,colorlinks=true]{hyperref}
+\IEEEoverridecommandlockouts
 
 \begin{document}
 \bstctlcite{IEEEexample:BSTcontrol}
@@ -13,7 +14,8 @@
 %\title{``Reproducibility-as-a-Service'': Dream or Reality?}
 %\title{On Usefully Publishing Scientific Models} 
 %\title{Learning to share: usefully publishing scientific models}
-\title{Learning to share: publishing useful scientific models}
+%\title{Learning to share: publishing useful scientific models}
+\title{``Share and Enjoy'': Publishing Useful (and Usable) Scientific Models}
 
 % author names and affiliations
 % use a multiple column layout for up to three different
@@ -22,7 +24,9 @@
 \IEEEauthorblockA{Department of Computing\\
 Cardiff Metropolitan University\\
 Cardiff, UK\\
-Email: {\url{tcrick@cardiffmet.ac.uk}}}
+Email: {\url{tcrick@cardiffmet.ac.uk}}}%
+\thanks{N.B. The authors would like to apologise to the Sirius Cybernetics
+  Corporation (and Douglas Adams) for the title of this paper.}
 \and
 \IEEEauthorblockN{Benjamin A. Hall and Samin Ishtiaq and Kenji Takeda}
 \IEEEauthorblockA{Microsoft Research\\
@@ -150,7 +154,7 @@ integers, and the target function may return a float, which must be converted
 to an integer for the update. This can be done in the target function 
 itself, but if the function returns a float the specific implementation
 dictates if this is a round, floor or ceil function. As such, this behaviour
-from the implmentation may change the results of the modelling.
+from the implementation may change the results of the modelling.
 
 An alternative example showing how the implementation of qualitative networks
 may change the model is the treatment of variable ranges within the model.
@@ -194,10 +198,10 @@ One common approach to tackling complex protocols (or work-flows)
 in computational sciences is to automate the process by scripting
 the laborious elements. In its initial steps, Sidekick~\cite{Hall2014Sidekick}
 builds an initial model of a $\alpha$-helical peptide, performs an
-energy minisation of the peptide \emph{in vacuo}, solvates the peptide,
+energy minimisation of the peptide \emph{in vacuo}, solvates the peptide,
 adds counter-ions, and runs a second energy minimisation. This is all
 done without any user actions, and the subsequent replicates are performed
-with different random seeds to collect accuate statistics. Even in this 
+with different random seeds to collect accurate statistics. Even in this 
 ideal case however, variations may arise between replicates. In testing 
 on a mixed AMD/Intel cluster, it was found that the solvation step added
 a variable number of water molecules. In a molecular dynamics simulation, 
@@ -206,20 +210,23 @@ starting states to diverge over time. As such, the inherent properties
 of the model and simulation should be taken into account in the overall
 protocol design, and noted in any attempts to reproduce the behaviour.
 
-In several disciplines, electronic lab notebooks have become the norm. These
-tools, combined with open repositories e.g. FigShare, ZappyLab, facilitate
-the sharing of protocols. This may be needed for legal compliance (e.g. drug
-trials), but has been successfully used in large research consortia, for example
-the use of ConturELN by the structural genomics consortium in Oxford. Similarly, ZappyLab aims to build a free, standardised protocol respository for the life
-sciences. Within computational sciences, efforts to mine these repositories 
-could offer the potential to convert manual protocols and work flows into 
-prototype scripts, to aid reproducibility.
+In several disciplines, electronic lab notebooks have become the
+norm. These tools, combined with open repositories e.g. FigShare,
+ZappyLab, facilitate the sharing of protocols. This may be needed for
+legal compliance (e.g. drug trials), but has been successfully used in
+large research consortia, for example the use of ConturELN by the
+structural genomics consortium in Oxford. Similarly, ZappyLab aims to
+build a free, standardised protocol repository for the life
+sciences. Within computational sciences, efforts to mine these
+repositories could offer the potential to convert manual protocols and
+work flows into prototype scripts, to aid reproducibility.
 
 Eg Codalab
 
 %Ben's example: get original model, do energy minimiztion, do some other transform, do energy minimization again. 
 
-electronic lab books. Can't delete any of your notes. Oxford structural genomics labbooks. 
+electronic lab books. Can't delete any of your notes. Oxford
+structural genomics lab books. 
 
 \subsection{Performance and scalability}
 
@@ -290,7 +297,7 @@ cleverer and run the tests via the VCS's pre-commit hook. That way
 you'd never forget to run the tests. All of this can be done, at
 scale, on the cloud now. Services such as Jenkins, Visual Studio
 Online, etc schedule the tests to run as soon as you commit. Suppose
-we have the publicly accesssible benchmarks. It seems a small step to
+we have the publicly accessible benchmarks. It seems a small step to
 hook these Continuous Integration (CI) systems up to the algorithm
 implementations that are written to run on these benchmarks.
 
