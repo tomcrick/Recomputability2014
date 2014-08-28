@@ -44,24 +44,24 @@ Abstract here...
 \section{Introduction: reproducibility in the computational sciences}
 Two key types of results arise from work done in the computational
 sciences: models and algorithms. Models represent an abstraction of
-reality, and their behaviour is expected to reliably be reproduced if
+reality, and their behaviour is expected to be reliably reproduced if
 different algorithms are used. This validation of a model's behaviour
 can be impacted by a number of factors relating to the specific
-techniques used, but similar approaches are expected to give the same
-broad results.  In contrast, when new algorithms are proposed to
+techniques used, but similar approaches are expected to give broadly
+the same results.  In contrast, when new algorithms are proposed to
 replace or supplement existing algorithms, they are expected to
 verifiably replicate the results of other algorithms.
 
-Neither class of result though exists in isolation; a new algorithm is
+However, neither class of result exists in isolation: a new algorithm is
 dependent on a set of models (or benchmarks) to demonstrate its new
 capabilities. Equally, model development can both necessitate the
 development of new algorithms and highlight the differences between
 alternative approaches. Whilst algorithms and their implementations
 have been highlighted as a potential barrier to
-reproducibility~\cite{crick-et-al_wssspe2}, here we discuss the value
+reproducibility~\cite{crick-et-al_wssspe2}, in this paper we discuss the value
 of improved access and sharing of models in avoiding mistakes and in
 generating new scientific insights. We describe efforts to reproduce
-computational models and algorithms, specifically the many issues
+computational models and algorithms, specifically the multitude of issues
 related to benchmarks of models and algorithms. 
 We conclude with thoughts % SI: are we doing this yet? 
 on where efforts should be focused in both the short- and
@@ -120,14 +120,15 @@ work~\footnote{e.g. UK Community of Research Software Engineers:
 \end{figure}
 
 However, even when this is considered, the testing of the benchmarks
-themselves may be non-trivial. Benchmarks may be tailored to the 
-specific problems being addressed by the algorithm, and may not be 
-expected to cover all edge cases. Implementation details, such as 
-floating point rounding behaviour may change benchmark results.
+themselves may be non-trivial. Benchmarks may be tailored to the
+specific problems being addressed by the algorithm, and may not be
+expected to cover all edge cases. Implementation details, such as
+floating point rounding behaviour, may affect benchmark results.
 Furthermore, for high performance computing applications, repeating
-benchmark results may not be possible by other groups without equivalent
-resources. Here we extend a previous proposal~\cite{crick-et-al_wssspe2}
-to specifically discuss the role of benchmark sets and analysis.
+benchmark results may not be possible by other groups without
+equivalent hardware resources. Here we extend a previous
+proposal~\cite{crick-et-al_wssspe2} to specifically discuss the role
+of benchmark sets and analysis.
 
 %SI/Ben to work on this
 
@@ -158,11 +159,12 @@ ranges of integers, the mechanism of conversion is not specified in the
 formalism. As such, this is another area where implementations can dictate
 the precise behaviour of the model, and needs to be explicitly reported.
 
-The floating point issues in the specific fields of system biology really point at
-the central issue that a model can describe reality at several different levels of
-abstraction. The more detailed it is, the more useful but also then the more 
-special purpose (and so use-less to many others). It's an aspect of modeling as to
-how abstract (vs concrete) the model is. 
+The floating point issues in the specific fields of system biology
+really point at the central issue that a model can describe reality at
+several different levels of abstraction. The more detailed it is, the
+more useful but also then the more special purpose (and so use-less to
+many others). It is an aspect of modelling as to how abstract (versus
+concrete) the model is.
 
 
 %Eg., Int. Does it mean mathematical integers, C long, C long long, int32, uint64? 
@@ -173,7 +175,7 @@ how abstract (vs concrete) the model is.
 
 Studying the behaviours of complex models is not trivial. Whilst 
 concise methods sections of papers may give a representative minimal
-protocol (or work-flow), missing details may present barriers to 
+protocol (or workflow), missing details may present barriers to 
 the reproduction. This is exacerbated by the inclusion of manual 
 transformation steps which may subtly change the model. Data format 
 conversions may be non-trivial or performed manually. These may 
@@ -184,7 +186,7 @@ even in this case, assumed knowledge may prevent simple replicates.
 %Even better would be tools which aid the transformation of text based
 %protocols into real scripts.
 
-One common approach to tackling complex protocols (or work-flows) 
+One common approach to tackling complex protocols (or workflows) 
 in computational sciences is to automate the process by scripting
 the laborious elements. In its initial steps, Sidekick~\cite{Hall2014Sidekick}
 builds an initial model of a $\alpha$-helical peptide, performs an
@@ -226,13 +228,14 @@ example is in high performance computing where scalability of code (e.g. gromacs
 NAMD, Desmond). Here the aim is to make simulations run more efficiently
 over large numbers of cores/nodes. 
 
-If speed isn't being explicitly tested, on-demand cloud resources 
-offer a route to reproducing computational experiments, including using 
-virtual machines. This provides a consistent, available channel for distributing 
-computational data and processing stacks together with the infrastructure 
-for researchers to redeploy and rerun experiments easily. It includes 
-repositories such as the Microsoft Azure VMDepot to allow discovery 
-and hosting of VM images online.
+If speed is not being explicitly tested, on-demand cloud resources
+offer a route to reproducing computational experiments, including
+using virtual machines. This provides a consistent, available channel
+for distributing computational data and processing stacks together
+with the infrastructure for researchers to redeploy and rerun
+experiments easily. It includes repositories such as the Microsoft
+Azure VMDepot\footnote{\url{http://vmdepot.msopentech.com/}} to allow
+discovery and hosting of VM images online.
 
 For research  where performance and scalability are important results, then 
 reproducing these in a meaningful way can be challenging. Providing source
@@ -284,19 +287,20 @@ That $h = f;g : A \rightarrow C$ and $f : A \rightarrow B$ and $g : A \rightarro
 in some category with structure means that, if $f$ has property $P$ and $g$ has
 property $Q$, then $h$ has property $P \oplus Q$, where $\oplus$ is some 
 combinatorial operator in the domain of discourse. What this abstract 
-characterisation means is that a program can be tested by testing it's parts,
+characterisation means is that a program can be tested by testing its parts,
 whole system testing can be done by unit testing. 
 
-But this is only the case if the system can be decomposed, and we know that in
-many important areas like machine learning, computational science, and CFD,
-the models aren't often decomposable.  We haven't been explicit about it ---
-people normally aren't, especially for models ---  but we have been discussing
-algorithms and models assuming that they are very gross objects. We haven't
-required them to be composable or de-composable. What can this mean
-practically? If we have an algorithm $A$ that claims to run on model $M$ with
-result $R$, then there's no reason to assume that a slight modification of $A$
-will also have result $R$. Or that $A$ running on a $M * N$, for some operator
-$*$, has a suitably extended $R$ result.
+But this is only the case if the system can be decomposed, and we know
+that in many important areas like machine learning, computational
+science, and CFD, the models are not often decomposable.  We have not
+been explicit about it -- people normally are not, especially for
+models -- but we have been discussing algorithms and models assuming
+that they are very gross objects. We have not required them to be
+composable or de-composable. What can this mean practically? If we
+have an algorithm $A$ that claims to run on model $M$ with result $R$,
+then there's no reason to assume that a slight modification of $A$
+will also have result $R$. Or that $A$ running on a $M * N$, for some
+operator $*$, has a suitably extended $R$ result.
 
 We need to be very careful --- when algorithms are running on models --- when
 they are running automatically, asynchronously (or due to events beyond our
@@ -332,7 +336,7 @@ e.g. Netflix competition (http://www.netflixprize.com/)
 
 %Samin section 
 
-The whole premiss of this paper is that Algorithms (implementations)
+The whole premise of this paper is that Algorithms (implementations)
 and Models (benchmarks) go together: algorithms are designed for
 certain types of models; models, though created to mimic some physical
 reality, also serve to stress the current known algorithms. A
