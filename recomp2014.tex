@@ -10,7 +10,6 @@
 \begin{document}
 \bstctlcite{IEEEexample:BSTcontrol}
 
-% still not happy with the title...
 %\title{``Reproducibility-as-a-Service'': Dream or Reality?}
 %\title{On Usefully Publishing Scientific Models} 
 %\title{Learning to share: usefully publishing scientific models}
@@ -140,41 +139,43 @@ proposal~\cite{crick-et-al_wssspe2} by specifically discussing the
 problems posed by models, considering the issues surrounding sharing
 and analysing benchmark sets.
 
-%SI/Ben to work on this
 
-\section{On the nature of models}
 
-% e.g. https://guides.github.com/activities/citable-code/
+\section{The nature of models}
 
-\subsection{Abstraction level} 
+\subsection{Abstraction levels} 
 
-Published models require basic information to allow the models to be
-explored. On the most basic level, this can include techniques to allow
-files to be parsed, but in this parsing errors may arise from details 
-stored in the original implementations of the model analysis algorithms.
-A simple example arises from the treatment of floating point conversions
-in qualitative networks in systems biology~\cite{Schaub2007}. Each
-variable in a network has an algebraic target function which describes
-how the variable should change at each step. The variables themselves are
-integers, and the target function may return a float, which must be converted
-to an integer for the update. This can be done in the target function 
-itself, but if the function returns a float the specific implementation
-dictates if this is a round, floor or ceil function. As such, this behaviour
-from the implementation may change the results of the modelling.
+A model describes reality at some level of abstraction. The more
+detailed it is, the more faithful it is, but also then the more
+special purpose (and so use-less to many others). It is an important
+aspect of the modelling task as to what level (abstract versus
+concrete) to model at. But often it is implicit, embodied but not
+embedded, in the model.
 
-An alternative example showing how the implementation of qualitative networks
-may change the model is the treatment of variable ranges within the model.
-Whilst the formalism allows the variables in a model to have differing 
-ranges of integers, the mechanism of conversion is not specified in the 
-formalism. As such, this is another area where implementations can dictate
-the precise behaviour of the model, and needs to be explicitly reported.
+% Published models require basic information to allow the models to be
+% explored. On the most basic level, this can include techniques to
+% allow files to be parsed, but in this parsing errors may arise from
+% details stored in the original implementations of the model analysis
+% algorithms.  
+An example of this comes from the treatment of floating point
+conversions in qualitative networks in systems
+biology~\cite{Schaub2007}. Each variable in a network has an algebraic
+target function which describes how the variable should change at each
+step. The variables themselves are integers, and the target function
+may return a float, which must be converted to an integer for the
+update. This can be done in the target function itself, but if the
+function returns a float, the specific implementation dictates if this
+is a round, floor or ceil function. This implicit (to the model) but
+specific (from the implementation) may change the results of the
+modelling.
 
-The floating point issues in the specific fields of system biology
-really point at the central issue that a model can describe reality at
-several different levels of abstraction. The more detailed it is, the
-more useful but also then the more special purpose (and so useless to
-many others). It is an aspect of modelling as to how abstract (versus
-concrete) the model is.
+Another example showing how the implementation of qualitative networks
+may change the model is the treatment of variable ranges within the
+model.  Whilst the formalism allows the variables in a model to have
+differing ranges of integers, the mechanism of conversion is not
+specified in the formalism. As such, this is another area where
+implementations can dictate the precise behaviour of the model, and
+needs to be explicitly annotated on the model.
 
 
 %Eg., Int. Does it mean mathematical integers, C long, C long long, int32, uint64? 
@@ -196,26 +197,23 @@ concrete) the model is.
 % originals. Stripped down so much as to be useless to anyone but the
 % author vs. the referees. 
 
-Benchmarks should be public and stored in central repositories
-% SI: turn into sentence 
-treat benchmark sets as a curated set of unit tests.
-%
-They should allow anyone
-to contribute, implying that the tests are in a standard
-format. Papers should be penalised if they do not use these public
-benchmarks. We need an open API for benchmarks, with standard
-repositories that allow referencing and annotation. Every
-test/assertion should be justified.
+A model, or a test, needs to be annotated. A benchmark is a set of
+models that have been put together for some explicit purpose. Perhaps
+the directory structure of the benchmarks tells us this purpose,
+perhaps assertions in the models tell us the purpose. In short, the
+benchmarks needs to be curated.  If the benchmark is public (allowing
+anyone to contribute), then the curation is even more necessary to
+make the models reusable.
 
-%\subsection{Composability and unit testing}
-There is also the issue of how gross or un-breakable the benchmarks are. 
-The concept of "composability" is a very fundamental one in computer science. 
-That $h = f;g : A \rightarrow C$ and $f : A \rightarrow B$ and $g : A \rightarrow C$ 
-in some category with structure means that, if $f$ has property $P$ and $g$ has
-property $Q$, then $h$ has property $P \oplus Q$, where $\oplus$ is some 
-combinatorial operator in the domain of discourse. What this abstract 
-characterisation means is that a program can be tested by testing its parts,
-whole system testing can be done by unit testing. 
+Once there is a set of tests, there is the issue of how independent or
+un-breakable the set is.  The concept of "composability" is a very
+fundamental one in computer science.  That $h = f;g : A \rightarrow C$
+and $f : A \rightarrow B$ and $g : A \rightarrow C$ in some category
+with structure means that, if $f$ has property $P$ and $g$ has
+property $Q$, then $h$ has property $P \oplus Q$, where $\oplus$ is
+some combinatorial operator in the domain of discourse. What this
+abstract characterisation means is that a program can be tested by
+testing its parts, whole system testing can be done by unit testing.
 
 But this is only the case if the system can be decomposed, and we know
 that in many important areas like machine learning, computational
@@ -229,22 +227,21 @@ then there is no reason to assume that a slight modification of $A$
 will also have result $R$. Or that $A$ running on a $M * N$, for some
 operator $*$, has a suitably extended $R$ result.
 
-We need to be very careful -- when algorithms are running on models -- when
-they are running automatically, asynchronously (or due to events beyond our
-control), on a global scale, with an effect like performance results that
-matter to third-parties. Both algorithms and  models will need careful
-curating.
+We need to be very careful -- when algorithms are running on models --
+when they are running automatically, asynchronously (or due to events
+beyond our control), on a global scale, with an effect like
+performance results that matter to third-parties. Both algorithms and
+models will need careful curating.
 
-A good example of some of these points is the RCSB Protein Data
-Bank\footnote{\url{http://www.pdb.org}} and Systems Biology Markup
-Language~\cite{Hucka2003,Chaouiya2013}. The software ones we know of,
-such as the UCI Machine Learning
-Repository\footnote{\url{http://archive.ics.uci.edu/ml/}}, 
-the Netflix competition benchmarks\footnote{\url{http://www.netflixprize.com/}}, 
+Some good examples of such benchmarks are the UCI Machine Learning
+Repository\footnote{\url{http://archive.ics.uci.edu/ml/}}, the Netflix
+competition benchmarks\footnote{\url{http://www.netflixprize.com/}},
 SMT Competition\footnote{\url{http://smtcomp.sourceforge.net/2014/}},
-SV-COMP\footnote{\url{http://sv-comp.sosy-lab.org/2015/}} and the
+SV-COMP\footnote{\url{http://sv-comp.sosy-lab.org/2015/}}, the
 Answer Set Programming
-Competition\footnote{\url{https://www.mat.unical.it/aspcomp2014/}} are
+Competition\footnote{\url{https://www.mat.unical.it/aspcomp2014/}},
+and the Termination Problem Database 
+\footnote{\url{http://termination-portal.org/wiki/TPDB}} are
 on that journey. Such repositories would allow the tests to be taken
 and easily analysed by any competitor tool. There has been work
 towards developing infrastructure: for example knowledge management
@@ -252,11 +249,6 @@ systems to preserve and share whole auto-tuning and machine learning
 setups for optimisation, with all related artifacts and their software
 and hardware dependencies besides just performance data
 ~\cite{fursin-et-al:2014}.
-
-
-%e.g. real-world validation - AIAA drag benchmarks, ERCOFTAC
-
-
 
 
 \section{Workflow of meta-models}
@@ -276,22 +268,23 @@ even in this case, assumed knowledge may prevent simple replicates.
 %Even better would be tools which aid the transformation of text based
 %protocols into real scripts.
 
-One common approach to tackling complex protocols (or workflows) 
-in computational sciences is to automate the process by scripting
-the laborious elements. In its initial steps, Sidekick~\cite{Hall2014Sidekick}
-builds an initial model of a $\alpha$-helical peptide, performs an
-energy minimisation of the peptide \emph{in vacuo}, solvates the peptide,
-adds counter-ions, and runs a second energy minimisation. This is all
-done without any user actions, and the subsequent replicates are performed
-with different random seeds to collect accurate statistics. Even in this 
-ideal case however, variations may arise between replicates. In testing 
-on a mixed AMD/Intel cluster, it was found that the solvation step added
-% SI: "it was found" by who? Citation? 
-a variable number of water molecules. In a molecular dynamics simulation, 
-this is sufficient to cause two simulations with otherwise identical 
-starting states to diverge over time. As such, the inherent properties
-of the model and simulation should be taken into account in the overall
-protocol design, and noted in any attempts to reproduce the behaviour.
+One common approach to tackling complex protocols (or workflows) in
+computational sciences is to automate the process by scripting the
+laborious elements. In its initial steps,
+Sidekick~\cite{Hall2014Sidekick} builds an initial model of a
+$\alpha$-helical peptide, performs an energy minimisation of the
+peptide \emph{in vacuo}, solvates the peptide, adds counter-ions, and
+runs a second energy minimisation. This is all done without any user
+actions, and the subsequent replicates are performed with different
+random seeds to collect accurate statistics. Even in this ideal case
+however, variations may arise between replicates. In testing on a
+mixed AMD/Intel cluster, one of the authors found that the solvation
+step added a variable number of water molecules. In a molecular
+dynamics simulation, this is sufficient to cause two simulations with
+otherwise identical starting states to diverge over time. As such, the
+inherent properties of the model and simulation should be taken into
+account in the overall protocol design, and noted in any attempts to
+reproduce the behaviour.
 
 In several disciplines, electronic lab notebooks have become the
 norm. These tools, combined with open repositories e.g. FigShare,
@@ -304,49 +297,33 @@ sciences. Within computational sciences, efforts to mine these
 repositories could offer the potential to convert manual protocols and
 work flows into prototype scripts, to aid reproducibility.
 
-Eg Codalab
-
-
 \subsection{Performance and scalability}
 
-A key question in reproducing research in a computational context is 
-whether performance is a key issue. For models of the physical world, 
-such as computational fluid dynamics and molecular dynamics, it is the 
-resulting physics that is typically important, rather than how fast it took to 
-solve the computational problem. In algorithms research, performance can be
-the key research result, and therefore reproducing this is important. Another 
-example is in high performance computing where scalability of code (e.g. gromacs,
-NAMD, Desmond). Here the aim is to make simulations run more efficiently
-over large numbers of cores/nodes. 
+A key question in reproducing research in a computational context is
+whether performance is a key issue. For models of the physical world,
+such as computational fluid dynamics and molecular dynamics, it is the
+resulting physics that is typically important, rather than how fast it
+took to solve the computational problem. In algorithms research,
+performance can be the key research result, and therefore reproducing
+this is important. Another example is in high performance computing
+where scalability of code (e.g. gromacs, NAMD, Desmond). Here the aim
+is to make simulations run more efficiently over large numbers of
+cores/nodes. On-demand cloud resources like Amazon spot market
+instances offer a route to reproducing computational experiments.
 
-If speed is not being explicitly tested, on-demand cloud resources
-offer a route to reproducing computational experiments, including
-using virtual machines. This provides a consistent, available channel
-for distributing computational data and processing stacks together
-with the infrastructure for researchers to redeploy and rerun
-experiments easily. It includes repositories such as the Microsoft
-Azure VMDepot\footnote{\url{http://vmdepot.msopentech.com/}} to allow
-discovery and hosting of VM images online.
-
-For research  where performance and scalability are important results, then 
-reproducing these in a meaningful way can be challenging. Providing source
-code, makefiles, input data and scripts is a minimum, but questions over the
-testing platform must be addressed. A key question is which performance 
-metric to use. Wall clock time is commonly used, but this does not allow for 
-long-term performance reproducibility as any such benchmarking is a 
-snapshot in time. This is true whether this is using physical 
-or virtual hardware. 
-
-
-% SI to say something here. 
-Other structural properties like termination, stability, etc. 
-
-Furthermore, the cost of hardware and system
-artefacts are generally overlooked~\cite{brain+devos:2009}.
-
-Making appropriate choices on the metrics of 
-performance is critical, such as execution time, operation count, and 
-algorithmic efficiency.
+A key question is which performance metric to use. Wall clock time is
+commonly used, but this does not allow for long-term performance
+reproducibility as any such benchmarking is a snapshot in time. This
+is true whether the underlying hardware the software is running on is
+physical or virtual hardware. Some ``op count'' is a more interesting
+measure. Also, other structural properties of the models the
+algorithms are running on, are more interesting. In the field of
+system biology, whether an algorithm can prove propertieslike
+termination, stability, interesting start conditions, etc, are useful
+measurements of whether one algorithm is better than
+another. Similarly, in Answer Set Programming, the cost of hardware
+and system artefacts are important but generally overlooked
+(\cite{brain+devos:2009} is a good example of considering them).
 
 
 
