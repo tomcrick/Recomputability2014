@@ -68,9 +68,6 @@ long-term to move to a world in which computational reproducibility
 helps researchers achieve their goals, rather than being perceived as
 an overhead.
 
-% there are a lot of Rs in this domain:
-% Replacing the Paper: The Twelve Rs of the e-Research Record~\cite{deroure:2010}
-% http://www.scilogs.com/eresearch/replacing-the-paper-the-twelve-rs-of-the-e-research-record/
 
 \section{Motivation}
 The reproduction and replication of reported scientific results is a
@@ -81,9 +78,9 @@ commenters, automated systems, which allow easy reproduction of
 results, offer the potential to improve the efficiency of scientific
 exploration and drive the adoption of new techniques. Nevertheless,
 this is wider socio-cultural problem that pervades the scientific
-community, with ``at least 50\% of published studies, even those in
-top-tier academic journals, can't be repeated with the same
-conclusions by an industrial lab''~\cite{osherovich:2011}.
+community, with estimates that as much as 50\% of published studies,
+even those in top-tier academic journals, cannot be repeated with the
+same conclusions by an industrial lab~\cite{osherovich:2011}.
 
 New tools for membrane protein simulation~\cite{Stansfeld,Hall2014}
 demonstrate how complex workflows can be automated, preventing errors
@@ -108,10 +105,18 @@ reimplementation of algorithms~\cite{crick-et-al_wssspe2}. These
 include widely discussed topics, such as choices of programming
 language and licence, as well as unreported technical details of the
 implementations and ensuring that developers get credit for their
-work.
+work~\footnote{e.g. UK Community of Research Software Engineers:
+  ~\url{http://www.rse.ac.uk/}}.
 
 % further to #overlyhonestmethods...
 % http://www.phdcomics.com/comics.php?f=1689
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=\columnwidth]{phd031214s.png}
+\caption{Reproducible research\newline [source: \url{http://www.phdcomics.com/comics.php?f=1689}]}
+\label{fig:reprodres} 
+\end{figure}
 
 However, even when this is considered, the testing of the benchmarks
 themselves may be non-trivial. Benchmarks may be tailored to the 
@@ -123,13 +128,14 @@ benchmark results may not be possible by other groups without equivalent
 resources. Here we extend a previous proposal~\cite{crick-et-al_wssspe2}
 to specifically discuss the role of benchmark sets and analysis.
 
-%In the cloud world, we have IaaS, PaaS and SaaS...do we need RaaS: ``Reproducibility-as-a-Service''?
-
 %SI/Ben to work on this
 
 \section{Roads to reproducibility}
 
 % A section about the ``How'', and the barriers to the How. 
+
+% not just a question of releasing your code and making it citable
+% e.g. https://guides.github.com/activities/citable-code/
 
 Need to inline these examples through out the section: 
 	c.f. Codalab, Kaggle
@@ -167,6 +173,8 @@ Include other examples of how abstract (vs concrete) the model should/could be.
 
 Eg., Int. Does it mean mathematical integers, C long, C long long, int32, uint64? 
 What about overflow behaviour? 
+
+e.g. What about random numbers?
 
 % Explicitly a ``protocol'' – explicit steps, copy-paste, customisable,
 % versioned; not black box.
@@ -223,7 +231,7 @@ work flows into prototype scripts, to aid reproducibility.
 
 Eg Codalab
 
-%Ben's example: get original model, do energy minimiztion, do some other transform, do energy minimization again. 
+%Ben's example: get original model, do energy minimisation, do some other transform, do energy minimisation again. 
 
 electronic lab books. Can't delete any of your notes. Oxford
 structural genomics lab books. 
@@ -255,7 +263,7 @@ reproducing these in a meaningful way can be challenging. Providing source
 code, makefiles, input data and scripts is a minimum, but questions over the
 testing platform must be addressed. A key question is which performance 
 metric to use. Wall clock time is commonly used, but this does not allow for 
-long-term performance reproducibilty as any such benchmarking is a 
+long-term performance reproducibility as any such benchmarking is a 
 snapshot in time. This is true whether this is using physical 
 or virtual hardware. Making appropriate choices on the metrics of 
 performance is critical, such as execution time, operation count, and 
@@ -269,28 +277,58 @@ Other structural properties like termination, stability, etc.
 
 \subsection{Benchmark repositories and annotation}
 
-%Tom section 
+%Tom section
+Benchmarks presented in scientific papers are essentially
+meaningless. If every paper has to be novel, then every benchmark,
+too, will be novel; there is no monotonic, historical truth in new,
+synthetically-crafted benchmarks. It is worse than that really: enough
+benchmarks are included to beat other tools. The comparisons are never
+fair (neither are other peoples' comparisons against your tool).  The
+benchmarks the tool describes are fashioned only for this instance:
+they might claim to be from the Windows device driver set, but the
+reality is that they are are stripped down versions of the
+originals. Stripped down so much as to be useless to anyone but the
+author vs. the referees. Furthermore, hardware and system artefacts
+are generally overlooked~\cite{brain+devos:2009}.
 
-Benchmarks as unit tests, stored in central repositories. 
-Treat benchmark sets as a curated set of unit tests
+Benchmarks should be public and stored in central repositories: treat
+benchmark sets as a curated set of unit tests.They should allow anyone
+to contribute, implying that the tests are in a standard
+format. Papers should be penalised if they do not use these public
+benchmarks. We need an open API for benchmarks, with standard
+repositories that allow referencing and annotation. Every
+test/assertion should be justified.
 
-Eg, SMTComp, SMT Lib. 
+A good example of some of these points is the RCSB Protein Data
+Bank\footnote{\url{http://www.pdb.org}} and Systems Biology Markup
+Language~\cite{Hucka2003,Chaouiya2013}. The software ones we know of,
+such as the UCI Machine Learning
+Repository\footnote{\url{http://archive.ics.uci.edu/ml/}}, SMT
+Competition\footnote{\url{http://smtcomp.sourceforge.net/2014/}},
+SV-COMP\footnote{\url{http://sv-comp.sosy-lab.org/2015/}} and the
+Answer Set Programming
+Competition\footnote{\url{https://www.mat.unical.it/aspcomp2014/}} are
+on that journey. Such repositories would allow the tests to be taken
+and easily analysed by any competitor tool. There has been work
+towards developing infrastructure: for example knowledge management
+systems to preserve and share whole auto-tuning and machine learning
+setups for optimisation, with all related artifacts and their software
+and hardware dependencies besides just performance data
+~\cite{fursin-et-al:2014}.
+
 
 e.g. real-world validation - AIAA drag benchmarks, ERCOFTAC
 	Possibly CAPRI/CASP? (protein interaction and folding competitions)
 
-An API for benchmarks? 
+e.g. Netflix competition (http://www.netflixprize.com/)
 
-Perhaps cite Fursin et al.~\cite{fursin-et-al:2014} here as an example?
 
-Tom: 
-example of memory profiling of CLP programs. Specialist solvers versus 
-generic solvers SMT have papers run on different benchmarks, testing different 
-things. 
+% Tom: 
+% example of memory profiling of CLP programs. Specialist solvers versus 
+% generic solvers SMT have papers run on different benchmarks, testing different 
+% things. 
 
-netflix competition. 
-
-\section{CI for models}
+\section{Continuous Integration for models}
 
 %Samin section 
 
@@ -300,7 +338,7 @@ certain types of models; models, though created to mimic some physical
 reality, also serve to stress the current known algorithms. A
 cloud-based service can make this link explicit.
 
-Wind back several decades, and no one would ``cvs commit'' to a
+Wind back several decades, and no one would {\texttt{cvs commit}} to a
 serious project without running the smoke tests. Later, you could be
 cleverer and run the tests via the VCS's pre-commit hook. That way
 you'd never forget to run the tests. All of this can be done, at
@@ -330,7 +368,7 @@ service that is just a bit more finished, that ties up the loose ends,
 would mean that algorithms and model would evolve together, and always
 be reproducible.
 
-\subsection{Composibility and unit testing}
+\subsection{Composability and unit testing}
 
 %Samin section 
 % SI: possibly this should go at the end of the Benchmarks section. 
@@ -340,7 +378,7 @@ That $h = f;g : A \rightarrow C$ and $f : A \rightarrow B$ and $g : A \rightarro
 in some category with structure means that, if $f$ has property $P$ and $g$ has
 property $Q$, then $h$ has property $P \oplus Q$, where $\oplus$ is some 
 combinatorial operator in the domain of discourse. What this abstract 
-characterization means is that a program can be tested by testing it's parts,
+characterisation means is that a program can be tested by testing it's parts,
 whole system testing can be done by unit testing. 
 
 But this is only the case if the system can be decomposed, and we know that in
@@ -370,7 +408,7 @@ A system as described here has several up front benefits- it link papers
 more closely to their outputs, making external validation easier and 
 allowing interested users to explore unaddressed sets of models. These 
 features alone will be expected to accelerate the research cycle, with
-major benefits. \emph{4th paradigm}.
+major benefits. \emph{4th paradigm}~\cite{hey:2009}.
 
 Limitations presented by big data- will some models resist validation?
 
