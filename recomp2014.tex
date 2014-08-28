@@ -41,7 +41,7 @@ Abstract here...
 
 \IEEEpeerreviewmaketitle
 
-\section{Introduction: reproducibility in the computational sciences}
+\section{Introduction}
 Two key types of results arise from work done in the computational
 sciences: models and algorithms. Models represent an abstraction of
 reality, and their behaviour is expected to reliably be reproduced if
@@ -70,7 +70,7 @@ helps researchers achieve their goals, rather than being perceived as
 an overhead.
 
 
-\section{Motivation}
+%\section{Motivation}
 The reproduction and replication of reported scientific results is a
 widely discussed topic within the scientific
 community~\cite{barnes:2010,morin-et-al:2012,joppa-et-al:2013}.
@@ -131,11 +131,11 @@ to specifically discuss the role of benchmark sets and analysis.
 
 %SI/Ben to work on this
 
-\section{Roads to reproducibility}
+\section{On the nature of models}
 
 % e.g. https://guides.github.com/activities/citable-code/
 
-\subsection{Implementation or model?}
+\subsection{abstraction level} 
 
 Published models require basic information to allow the models to be
 explored. On the most basic level, this can include techniques to allow
@@ -168,90 +168,6 @@ how abstract (vs concrete) the model is.
 %Eg., Int. Does it mean mathematical integers, C long, C long long, int32, uint64? 
 %What about overflow behaviour? 
 %e.g. What about random numbers?
-
-\subsection{Protocols as scripts}
-
-Studying the behaviours of complex models is not trivial. Whilst 
-concise methods sections of papers may give a representative minimal
-protocol (or work-flow), missing details may present barriers to 
-the reproduction. This is exacerbated by the inclusion of manual 
-transformation steps which may subtly change the model. Data format 
-conversions may be non-trivial or performed manually. These may 
-involve external scripts, which might not be part of any of the
-explicitly shared code. This can be supported by open protocols, stored 
-in electronic lab notebooks during the process of model building. However
-even in this case, assumed knowledge may prevent simple replicates.
-%Even better would be tools which aid the transformation of text based
-%protocols into real scripts.
-
-One common approach to tackling complex protocols (or work-flows) 
-in computational sciences is to automate the process by scripting
-the laborious elements. In its initial steps, Sidekick~\cite{Hall2014Sidekick}
-builds an initial model of a $\alpha$-helical peptide, performs an
-energy minimisation of the peptide \emph{in vacuo}, solvates the peptide,
-adds counter-ions, and runs a second energy minimisation. This is all
-done without any user actions, and the subsequent replicates are performed
-with different random seeds to collect accurate statistics. Even in this 
-ideal case however, variations may arise between replicates. In testing 
-on a mixed AMD/Intel cluster, it was found that the solvation step added
-% SI: "it was found" by who? Citation? 
-a variable number of water molecules. In a molecular dynamics simulation, 
-this is sufficient to cause two simulations with otherwise identical 
-starting states to diverge over time. As such, the inherent properties
-of the model and simulation should be taken into account in the overall
-protocol design, and noted in any attempts to reproduce the behaviour.
-
-In several disciplines, electronic lab notebooks have become the
-norm. These tools, combined with open repositories e.g. FigShare,
-ZappyLab, facilitate the sharing of protocols. This may be needed for
-legal compliance (e.g. drug trials), but has been successfully used in
-large research consortia, for example the use of ConturELN by the
-structural genomics consortium in Oxford. Similarly, ZappyLab aims to
-build a free, standardised protocol repository for the life
-sciences. Within computational sciences, efforts to mine these
-repositories could offer the potential to convert manual protocols and
-work flows into prototype scripts, to aid reproducibility.
-
-Eg Codalab
-
-\subsection{Performance and scalability}
-
-A key question in reproducing research in a computational context is 
-whether performance is a key issue. For models of the physical world, 
-such as computational fluid dynamics and molecular dynamics, it is the 
-resulting physics that is typically important, rather than how fast it took to 
-solve the computational problem. In algorithms research, performance can be
-the key research result, and therefore reproducing this is important. Another 
-example is in high performance computing where scalability of code (e.g. gromacs,
-NAMD, Desmond). Here the aim is to make simulations run more efficiently
-over large numbers of cores/nodes. 
-
-If speed isn't being explicitly tested, on-demand cloud resources 
-offer a route to reproducing computational experiments, including using 
-virtual machines. This provides a consistent, available channel for distributing 
-computational data and processing stacks together with the infrastructure 
-for researchers to redeploy and rerun experiments easily. It includes 
-repositories such as the Microsoft Azure VMDepot to allow discovery 
-and hosting of VM images online.
-
-For research  where performance and scalability are important results, then 
-reproducing these in a meaningful way can be challenging. Providing source
-code, makefiles, input data and scripts is a minimum, but questions over the
-testing platform must be addressed. A key question is which performance 
-metric to use. Wall clock time is commonly used, but this does not allow for 
-long-term performance reproducibility as any such benchmarking is a 
-snapshot in time. This is true whether this is using physical 
-or virtual hardware. 
-
-
-% SI to say something here. 
-Other structural properties like termination, stability, etc. 
-
-Making appropriate choices on the metrics of 
-performance is critical, such as execution time, operation count, and 
-algorithmic efficiency.
-
-
 
 \subsection{Benchmark repositories and annotation}
 
@@ -328,9 +244,110 @@ e.g. real-world validation - AIAA drag benchmarks, ERCOFTAC
 e.g. Netflix competition (http://www.netflixprize.com/)
 
 
-\section{Continuous Integration for models}
+\section{Workflow of meta-models}
 
-%Samin section 
+\subsection{Protocols as scripts}
+
+Studying the behaviours of complex models is not trivial. Whilst 
+concise methods sections of papers may give a representative minimal
+protocol (or work-flow), missing details may present barriers to 
+the reproduction. This is exacerbated by the inclusion of manual 
+transformation steps which may subtly change the model. Data format 
+conversions may be non-trivial or performed manually. These may 
+involve external scripts, which might not be part of any of the
+explicitly shared code. This can be supported by open protocols, stored 
+in electronic lab notebooks during the process of model building. However
+even in this case, assumed knowledge may prevent simple replicates.
+%Even better would be tools which aid the transformation of text based
+%protocols into real scripts.
+
+One common approach to tackling complex protocols (or work-flows) 
+in computational sciences is to automate the process by scripting
+the laborious elements. In its initial steps, Sidekick~\cite{Hall2014Sidekick}
+builds an initial model of a $\alpha$-helical peptide, performs an
+energy minimisation of the peptide \emph{in vacuo}, solvates the peptide,
+adds counter-ions, and runs a second energy minimisation. This is all
+done without any user actions, and the subsequent replicates are performed
+with different random seeds to collect accurate statistics. Even in this 
+ideal case however, variations may arise between replicates. In testing 
+on a mixed AMD/Intel cluster, it was found that the solvation step added
+% SI: "it was found" by who? Citation? 
+a variable number of water molecules. In a molecular dynamics simulation, 
+this is sufficient to cause two simulations with otherwise identical 
+starting states to diverge over time. As such, the inherent properties
+of the model and simulation should be taken into account in the overall
+protocol design, and noted in any attempts to reproduce the behaviour.
+
+In several disciplines, electronic lab notebooks have become the
+norm. These tools, combined with open repositories e.g. FigShare,
+ZappyLab, facilitate the sharing of protocols. This may be needed for
+legal compliance (e.g. drug trials), but has been successfully used in
+large research consortia, for example the use of ConturELN by the
+structural genomics consortium in Oxford. Similarly, ZappyLab aims to
+build a free, standardised protocol repository for the life
+sciences. Within computational sciences, efforts to mine these
+repositories could offer the potential to convert manual protocols and
+work flows into prototype scripts, to aid reproducibility.
+
+Eg Codalab
+
+
+\subsection{Performance and scalability}
+
+A key question in reproducing research in a computational context is 
+whether performance is a key issue. For models of the physical world, 
+such as computational fluid dynamics and molecular dynamics, it is the 
+resulting physics that is typically important, rather than how fast it took to 
+solve the computational problem. In algorithms research, performance can be
+the key research result, and therefore reproducing this is important. Another 
+example is in high performance computing where scalability of code (e.g. gromacs,
+NAMD, Desmond). Here the aim is to make simulations run more efficiently
+over large numbers of cores/nodes. 
+
+If speed isn't being explicitly tested, on-demand cloud resources 
+offer a route to reproducing computational experiments, including using 
+virtual machines. This provides a consistent, available channel for distributing 
+computational data and processing stacks together with the infrastructure 
+for researchers to redeploy and rerun experiments easily. It includes 
+repositories such as the Microsoft Azure VMDepot to allow discovery 
+and hosting of VM images online.
+
+For research  where performance and scalability are important results, then 
+reproducing these in a meaningful way can be challenging. Providing source
+code, makefiles, input data and scripts is a minimum, but questions over the
+testing platform must be addressed. A key question is which performance 
+metric to use. Wall clock time is commonly used, but this does not allow for 
+long-term performance reproducibility as any such benchmarking is a 
+snapshot in time. This is true whether this is using physical 
+or virtual hardware. 
+
+
+% SI to say something here. 
+Other structural properties like termination, stability, etc. 
+
+Making appropriate choices on the metrics of 
+performance is critical, such as execution time, operation count, and 
+algorithmic efficiency.
+
+
+
+
+
+
+
+
+
+
+\section{Future outlook}
+
+
+% Limitations presented by big data- will some models resist validation?
+
+% Critical success factor is providing capabilities that help researchers 
+% in their day-to-day work, rather than being an overhead incurred, thus 
+% providing both immediate and long-term returns on time to the individual.
+
+%\section{Continuous Integration for models}
 
 The whole premiss of this paper is that Algorithms (implementations)
 and Models (benchmarks) go together: algorithms are designed for
@@ -369,32 +386,11 @@ would mean that algorithms and model would evolve together, and always
 be reproducible.
 
 
-
-
-
-
-\section{Future outlook}
-
 A system as described here has several up front benefits- it link papers 
 more closely to their outputs, making external validation easier and 
 allowing interested users to explore unaddressed sets of models. These 
 features alone will be expected to accelerate the research cycle, with
 major benefits. \emph{4th paradigm}~\cite{hey:2009}.
-
-Limitations presented by big data- will some models resist validation?
-
-Critical success factor is providing capabilities that help researchers 
-in their day-to-day work, rather than being an overhead incurred, thus 
-providing both immediate and long-term returns on time to the individual.
-
-% trigger a \newpage just before the given reference
-% number - used to balance the columns on the last page
-% adjust value as needed - may need to be readjusted if
-% the document is modified later
-% \IEEEtriggeratref{37}
-% The "triggered" command can be changed if desired:
-%\IEEEtriggercmd{\enlargethispage{-5in}}
-
 
 % BibTeX users
 \bibliographystyle{IEEEtran}
