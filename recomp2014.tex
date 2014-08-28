@@ -174,21 +174,23 @@ concrete) the model is.
 \subsection{Benchmark repositories and annotation}
 
 %Tom section
-Benchmarks presented in scientific papers are essentially
-meaningless. If every paper has to be novel, then every benchmark,
-too, will be novel; there is no monotonic, historical truth in new,
-synthetically-crafted benchmarks. It is worse than that really: enough
-benchmarks are included to beat other tools. The comparisons are never
-fair (neither are other peoples' comparisons against your tool).  The
-benchmarks the tool describes are fashioned only for this instance:
-they might claim to be from the Windows device driver set, but the
-reality is that they are are stripped down versions of the
-originals. Stripped down so much as to be useless to anyone but the
-author vs. the referees. Furthermore, the cost of hardware and system
-artefacts are generally overlooked~\cite{brain+devos:2009}.
+% Benchmarks presented in scientific papers are essentially
+% meaningless. If every paper has to be novel, then every benchmark,
+% too, will be novel; there is no monotonic, historical truth in new,
+% synthetically-crafted benchmarks. It is worse than that really: enough
+% benchmarks are included to beat other tools. The comparisons are never
+% fair (neither are other peoples' comparisons against your tool).  The
+% benchmarks the tool describes are fashioned only for this instance:
+% they might claim to be from the Windows device driver set, but the
+% reality is that they are are stripped down versions of the
+% originals. Stripped down so much as to be useless to anyone but the
+% author vs. the referees. 
 
-Benchmarks should be public and stored in central repositories: treat
-benchmark sets as a curated set of unit tests.They should allow anyone
+Benchmarks should be public and stored in central repositories
+% SI: turn into sentence 
+treat benchmark sets as a curated set of unit tests.
+%
+They should allow anyone
 to contribute, implying that the tests are in a standard
 format. Papers should be penalised if they do not use these public
 benchmarks. We need an open API for benchmarks, with standard
@@ -328,6 +330,9 @@ or virtual hardware.
 
 % SI to say something here. 
 Other structural properties like termination, stability, etc. 
+
+Furthermore, the cost of hardware and system
+artefacts are generally overlooked~\cite{brain+devos:2009}.
 
 Making appropriate choices on the metrics of 
 performance is critical, such as execution time, operation count, and 
