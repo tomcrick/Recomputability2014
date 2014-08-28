@@ -15,7 +15,7 @@
 %\title{On Usefully Publishing Scientific Models} 
 %\title{Learning to share: usefully publishing scientific models}
 %\title{Learning to share: publishing useful scientific models}
-\title{``Share and Enjoy'': Publishing Useful and Usable Scientific Models}
+\title{``Share and Enjoy''\\Publishing Useful and Usable Scientific Models}
 
 % author names and affiliations
 % use a multiple column layout for up to three different
@@ -41,7 +41,7 @@ Abstract here...
 
 \IEEEpeerreviewmaketitle
 
-\section{Introduction: reproducibility in the computational sciences}
+\section{Introduction}
 Two key types of results arise from work done in the computational
 sciences: models and algorithms. Models represent an abstraction of
 reality, and their behaviour is expected to be reliably reproduced if
@@ -70,7 +70,7 @@ helps researchers achieve their goals, rather than being perceived as
 an overhead.
 
 
-\section{Motivation}
+%\section{Motivation}
 The reproduction and replication of reported scientific results is a
 widely discussed topic within the scientific
 community~\cite{barnes:2010,morin-et-al:2012,joppa-et-al:2013}.
@@ -132,11 +132,11 @@ of benchmark sets and analysis.
 
 %SI/Ben to work on this
 
-\section{Roads to reproducibility}
+\section{On the nature of models}
 
 % e.g. https://guides.github.com/activities/citable-code/
 
-\subsection{Implementation or model?}
+\subsection{abstraction level} 
 
 Published models require basic information to allow the models to be
 explored. On the most basic level, this can include techniques to allow
@@ -170,6 +170,83 @@ concrete) the model is.
 %Eg., Int. Does it mean mathematical integers, C long, C long long, int32, uint64? 
 %What about overflow behaviour? 
 %e.g. What about random numbers?
+
+\subsection{Benchmark repositories and annotation}
+
+%Tom section
+Benchmarks presented in scientific papers are essentially
+meaningless. If every paper has to be novel, then every benchmark,
+too, will be novel; there is no monotonic, historical truth in new,
+synthetically-crafted benchmarks. It is worse than that really: enough
+benchmarks are included to beat other tools. The comparisons are never
+fair (neither are other peoples' comparisons against your tool).  The
+benchmarks the tool describes are fashioned only for this instance:
+they might claim to be from the Windows device driver set, but the
+reality is that they are are stripped down versions of the
+originals. Stripped down so much as to be useless to anyone but the
+author vs. the referees. Furthermore, the cost of hardware and system
+artefacts are generally overlooked~\cite{brain+devos:2009}.
+
+Benchmarks should be public and stored in central repositories: treat
+benchmark sets as a curated set of unit tests.They should allow anyone
+to contribute, implying that the tests are in a standard
+format. Papers should be penalised if they do not use these public
+benchmarks. We need an open API for benchmarks, with standard
+repositories that allow referencing and annotation. Every
+test/assertion should be justified.
+
+%\subsection{Composability and unit testing}
+There is also the issue of how gross or un-breakable the benchmarks are. 
+The concept of "composability" is a very fundamental one in computer science. 
+That $h = f;g : A \rightarrow C$ and $f : A \rightarrow B$ and $g : A \rightarrow C$ 
+in some category with structure means that, if $f$ has property $P$ and $g$ has
+property $Q$, then $h$ has property $P \oplus Q$, where $\oplus$ is some 
+combinatorial operator in the domain of discourse. What this abstract 
+characterisation means is that a program can be tested by testing it's parts,
+whole system testing can be done by unit testing. 
+
+But this is only the case if the system can be decomposed, and we know that in
+many important areas like machine learning, computational science, and CFD,
+the models aren't often decomposable.  We haven't been explicit about it ---
+people normally aren't, especially for models ---  but we have been discussing
+algorithms and models assuming that they are very gross objects. We haven't
+required them to be composable or de-composable. What can this mean
+practically? If we have an algorithm $A$ that claims to run on model $M$ with
+result $R$, then there's no reason to assume that a slight modification of $A$
+will also have result $R$. Or that $A$ running on a $M * N$, for some operator
+$*$, has a suitably extended $R$ result.
+
+We need to be very careful --- when algorithms are running on models --- when
+they are running automatically, asynchronously (or due to events beyond our
+control), on a global scale, with an effect like performance results that
+matter to third-parties. Both algorithms and  models will need careful
+curating.
+
+A good example of some of these points is the RCSB Protein Data
+Bank\footnote{\url{http://www.pdb.org}} and Systems Biology Markup
+Language~\cite{Hucka2003,Chaouiya2013}. The software ones we know of,
+such as the UCI Machine Learning
+Repository\footnote{\url{http://archive.ics.uci.edu/ml/}}, SMT
+Competition\footnote{\url{http://smtcomp.sourceforge.net/2014/}},
+SV-COMP\footnote{\url{http://sv-comp.sosy-lab.org/2015/}} and the
+Answer Set Programming
+Competition\footnote{\url{https://www.mat.unical.it/aspcomp2014/}} are
+on that journey. Such repositories would allow the tests to be taken
+and easily analysed by any competitor tool. There has been work
+towards developing infrastructure: for example knowledge management
+systems to preserve and share whole auto-tuning and machine learning
+setups for optimisation, with all related artifacts and their software
+and hardware dependencies besides just performance data
+~\cite{fursin-et-al:2014}.
+
+
+e.g. real-world validation - AIAA drag benchmarks, ERCOFTAC
+	Possibly CAPRI/CASP? (protein interaction and folding competitions)
+
+e.g. Netflix competition (http://www.netflixprize.com/)
+
+
+\section{Workflow of meta-models}
 
 \subsection{Protocols as scripts}
 
@@ -216,6 +293,7 @@ work flows into prototype scripts, to aid reproducibility.
 
 Eg Codalab
 
+
 \subsection{Performance and scalability}
 
 A key question in reproducing research in a computational context is 
@@ -256,30 +334,9 @@ algorithmic efficiency.
 
 
 
-\subsection{Benchmark repositories and annotation}
 
-%Tom section
-Benchmarks presented in scientific papers are essentially
-meaningless. If every paper has to be novel, then every benchmark,
-too, will be novel; there is no monotonic, historical truth in new,
-synthetically-crafted benchmarks. It is worse than that really: enough
-benchmarks are included to beat other tools. The comparisons are never
-fair (neither are other peoples' comparisons against your tool).  The
-benchmarks the tool describes are fashioned only for this instance:
-they might claim to be from the Windows device driver set, but the
-reality is that they are are stripped down versions of the
-originals. Stripped down so much as to be useless to anyone but the
-author vs. the referees. Furthermore, the cost of hardware and system
-artefacts are generally overlooked~\cite{brain+devos:2009}.
 
-Benchmarks should be public and stored in central repositories: treat
-benchmark sets as a curated set of unit tests.They should allow anyone
-to contribute, implying that the tests are in a standard
-format. Papers should be penalised if they do not use these public
-benchmarks. We need an open API for benchmarks, with standard
-repositories that allow referencing and annotation. Every
-test/assertion should be justified.
-
+<<<<<<< HEAD
 %\subsection{Composability and unit testing}
 There is also the issue of how gross or un-breakable the benchmarks are. 
 The concept of "composability" is a very fundamental one in computer science. 
@@ -301,40 +358,23 @@ have an algorithm $A$ that claims to run on model $M$ with result $R$,
 then there's no reason to assume that a slight modification of $A$
 will also have result $R$. Or that $A$ running on a $M * N$, for some
 operator $*$, has a suitably extended $R$ result.
+=======
 
-We need to be very careful --- when algorithms are running on models --- when
-they are running automatically, asynchronously (or due to events beyond our
-control), on a global scale, with an effect like performance results that
-matter to third-parties. Both algorithms and  models will need careful
-curating.
-
-A good example of some of these points is the RCSB Protein Data
-Bank\footnote{\url{http://www.pdb.org}} and Systems Biology Markup
-Language~\cite{Hucka2003,Chaouiya2013}. The software ones we know of,
-such as the UCI Machine Learning
-Repository\footnote{\url{http://archive.ics.uci.edu/ml/}}, SMT
-Competition\footnote{\url{http://smtcomp.sourceforge.net/2014/}},
-SV-COMP\footnote{\url{http://sv-comp.sosy-lab.org/2015/}} and the
-Answer Set Programming
-Competition\footnote{\url{https://www.mat.unical.it/aspcomp2014/}} are
-on that journey. Such repositories would allow the tests to be taken
-and easily analysed by any competitor tool. There has been work
-towards developing infrastructure: for example knowledge management
-systems to preserve and share whole auto-tuning and machine learning
-setups for optimisation, with all related artifacts and their software
-and hardware dependencies besides just performance data
-~\cite{fursin-et-al:2014}.
+>>>>>>> 4b16bf5ae7dc42981a7a8f2ec108b6e8484f4322
 
 
-e.g. real-world validation - AIAA drag benchmarks, ERCOFTAC
-	Possibly CAPRI/CASP? (protein interaction and folding competitions)
-
-e.g. Netflix competition (http://www.netflixprize.com/)
 
 
-\section{Continuous Integration for models}
+\section{Future outlook}
 
-%Samin section 
+
+% Limitations presented by big data- will some models resist validation?
+
+% Critical success factor is providing capabilities that help researchers 
+% in their day-to-day work, rather than being an overhead incurred, thus 
+% providing both immediate and long-term returns on time to the individual.
+
+%\section{Continuous Integration for models}
 
 The whole premise of this paper is that Algorithms (implementations)
 and Models (benchmarks) go together: algorithms are designed for
@@ -373,32 +413,11 @@ would mean that algorithms and model would evolve together, and always
 be reproducible.
 
 
-
-
-
-
-\section{Future outlook}
-
 A system as described here has several up front benefits- it link papers 
 more closely to their outputs, making external validation easier and 
 allowing interested users to explore unaddressed sets of models. These 
 features alone will be expected to accelerate the research cycle, with
 major benefits. \emph{4th paradigm}~\cite{hey:2009}.
-
-Limitations presented by big data- will some models resist validation?
-
-Critical success factor is providing capabilities that help researchers 
-in their day-to-day work, rather than being an overhead incurred, thus 
-providing both immediate and long-term returns on time to the individual.
-
-% trigger a \newpage just before the given reference
-% number - used to balance the columns on the last page
-% adjust value as needed - may need to be readjusted if
-% the document is modified later
-% \IEEEtriggeratref{37}
-% The "triggered" command can be changed if desired:
-%\IEEEtriggercmd{\enlargethispage{-5in}}
-
 
 % BibTeX users
 \bibliographystyle{IEEEtran}
