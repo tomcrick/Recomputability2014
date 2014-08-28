@@ -85,10 +85,13 @@ community, with estimates that as much as 50\% of published studies,
 even those in top-tier academic journals, cannot be repeated with the
 same conclusions by an industrial lab~\cite{osherovich:2011}.
 
-New tools for membrane protein simulation~\cite{Stansfeld,Hall2014}
+Specific examples of the benefits of reproducible workflows to researchers 
+are now appearing in the scientific literature. New tools for membrane protein simulation~\cite{Stansfeld,Hall2014}
 demonstrate how complex workflows can be automated, preventing errors
 and differences arising from manual execution, whilst making it faster
-to perform new analyses.  Alongside this, recent work in executable
+to perform new analyses. More complex tools, such as Copernicus, aim to 
+automate more generic molecular dynamics workflows~\cite{Pronk}.
+Alongside this, recent work in executable
 biology~\cite{Cook} showed how a new class of models, representing a
 defined property of biological networks, defeated an existing
 algorithm for proving stability. As such, it was the broader
@@ -96,10 +99,14 @@ application of a new algorithm to additional models (or benchmarks)
 which highlighted an unexplored but important phenomena the algorithm
 could not address.
 
-Whilst experimental work requires detailed protocol descriptions,
-computer science and the computational science disciplines uniquely
-are able to share the raw outputs of their work as software and
-standard format datafiles. Despite this advantage, and alongside
+%Whilst experimental work requires detailed protocol descriptions,
+%computer science and the computational science disciplines uniquely
+%are able to share the raw outputs of their work as software and
+%standard format datafiles. 
+In each case, these tools take advatage of a fundemental advantage
+of computer science and computational science- the unique ability to
+share the raw outputs of their work as software and datafiles. However, 
+despite this advantage, and alongside
 ongoing -- and significant -- changes to the traditional models of
 academic dissemination and
 publication~\cite{deroure:2010,stodden-et-al:2013,fursin+dubach:2014},
@@ -129,8 +136,9 @@ floating point rounding behaviour, may affect benchmark results.
 Furthermore, for high performance computing applications, repeating
 benchmark results may not be possible by other groups without
 equivalent hardware resources. Here we extend a previous
-proposal~\cite{crick-et-al_wssspe2} to specifically discuss the role
-of benchmark sets and analysis.
+proposal~\cite{crick-et-al_wssspe2} by specifically discussing the 
+problems posed by models, considering the issues surrounding sharing
+and analysing benchmark sets.
 
 %SI/Ben to work on this
 
