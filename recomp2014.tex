@@ -235,23 +235,32 @@ structural genomics lab books.
 A key question in reproducing research in a computational context is 
 whether performance is a key issue. For models of the physical world, 
 such as computational fluid dynamics and molecular dynamics, it is the 
-resulting physics that is important, rather than how fast it took to 
+resulting physics that is typically important, rather than how fast it took to 
 solve the computational problem. In algorithms research, performance can be
 the key research result, and therefore reproducing this is important. Another 
 example is in high performance computing where scalability of code (e.g. gromacs,
 NAMD, Desmond). Here the aim is to make simulations run more efficiently
-over large numbers of cores/nodes. Scaling results however may be 
-hard to reproduce without access to significant resource.
+over large numbers of cores/nodes. 
 
 If speed isn't being explicitly tested, on-demand cloud resources 
-may offer a route to testing small systems. Slow VMs in the cloud
-may test scalability properties of algorithm without requiring access
-to always on-resource.
+offer a route to reproducing computational experiments, including using 
+virtual machines. This provides a consistent, available channel for distributing 
+computational data and processing stacks together with the infrastructure 
+for researchers to redeploy and rerun experiments easily. It includes 
+repositories such as the Microsoft Azure VMDepot to allow discovery 
+and hosting of VM images online.
 
-SI: I wonder also if cloud providers can give some metric of what
-load/latency/resources your job was run under.  That way, you could
-calculate how your performance would scale up had you access to the
-full resources. 
+For research  where performance and scalability are important results, then 
+reproducing these in a meaningful way can be challenging. Providing source
+code, makefiles, input data and scripts is a minimum, but questions over the
+testing platform must be addressed. A key question is which performance 
+metric to use. Wall clock time is commonly used, but this does not allow for 
+long-term performance reproducibilty as any such benchmarking is a 
+snapshot in time. This is true whether this is using physical 
+or virtual hardware. Making appropriate choices on the metrics of 
+performance is critical, such as execution time, operation count, and 
+algorithmic efficiency.
+
 
 
 Wallclock vs op count
