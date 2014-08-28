@@ -36,12 +36,14 @@ Email: {\url{{benhall,samin.ishtiaq,kenji.takeda}@microsoft.com}}}}
 \maketitle
 
 \begin{abstract}
-Abstract here...
+% lock: Tom 
+we discuss the value of improved access and sharing of models 
 \end{abstract}
 
 \IEEEpeerreviewmaketitle
 
 \section{Introduction}
+% lock: Ben 
 Two key types of results arise from work done in the computational
 sciences: models and algorithms. Models represent an abstraction of
 reality, and their behaviour is expected to be reliably reproduced if
@@ -174,21 +176,23 @@ concrete) the model is.
 \subsection{Benchmark repositories and annotation}
 
 %Tom section
-Benchmarks presented in scientific papers are essentially
-meaningless. If every paper has to be novel, then every benchmark,
-too, will be novel; there is no monotonic, historical truth in new,
-synthetically-crafted benchmarks. It is worse than that really: enough
-benchmarks are included to beat other tools. The comparisons are never
-fair (neither are other peoples' comparisons against your tool).  The
-benchmarks the tool describes are fashioned only for this instance:
-they might claim to be from the Windows device driver set, but the
-reality is that they are are stripped down versions of the
-originals. Stripped down so much as to be useless to anyone but the
-author vs. the referees. Furthermore, the cost of hardware and system
-artefacts are generally overlooked~\cite{brain+devos:2009}.
+% Benchmarks presented in scientific papers are essentially
+% meaningless. If every paper has to be novel, then every benchmark,
+% too, will be novel; there is no monotonic, historical truth in new,
+% synthetically-crafted benchmarks. It is worse than that really: enough
+% benchmarks are included to beat other tools. The comparisons are never
+% fair (neither are other peoples' comparisons against your tool).  The
+% benchmarks the tool describes are fashioned only for this instance:
+% they might claim to be from the Windows device driver set, but the
+% reality is that they are are stripped down versions of the
+% originals. Stripped down so much as to be useless to anyone but the
+% author vs. the referees. 
 
-Benchmarks should be public and stored in central repositories: treat
-benchmark sets as a curated set of unit tests.They should allow anyone
+Benchmarks should be public and stored in central repositories
+% SI: turn into sentence 
+treat benchmark sets as a curated set of unit tests.
+%
+They should allow anyone
 to contribute, implying that the tests are in a standard
 format. Papers should be penalised if they do not use these public
 benchmarks. We need an open API for benchmarks, with standard
@@ -227,8 +231,9 @@ A good example of some of these points is the RCSB Protein Data
 Bank\footnote{\url{http://www.pdb.org}} and Systems Biology Markup
 Language~\cite{Hucka2003,Chaouiya2013}. The software ones we know of,
 such as the UCI Machine Learning
-Repository\footnote{\url{http://archive.ics.uci.edu/ml/}}, SMT
-Competition\footnote{\url{http://smtcomp.sourceforge.net/2014/}},
+Repository\footnote{\url{http://archive.ics.uci.edu/ml/}}, 
+the Netflix competition benchmarks\footnote{\urlhttp://www.netflixprize.com/}}, 
+SMT Competition\footnote{\url{http://smtcomp.sourceforge.net/2014/}},
 SV-COMP\footnote{\url{http://sv-comp.sosy-lab.org/2015/}} and the
 Answer Set Programming
 Competition\footnote{\url{https://www.mat.unical.it/aspcomp2014/}} are
@@ -241,10 +246,9 @@ and hardware dependencies besides just performance data
 ~\cite{fursin-et-al:2014}.
 
 
-e.g. real-world validation - AIAA drag benchmarks, ERCOFTAC
-	Possibly CAPRI/CASP? (protein interaction and folding competitions)
+%e.g. real-world validation - AIAA drag benchmarks, ERCOFTAC
 
-e.g. Netflix competition (http://www.netflixprize.com/)
+
 
 
 \section{Workflow of meta-models}
@@ -328,6 +332,9 @@ or virtual hardware.
 
 % SI to say something here. 
 Other structural properties like termination, stability, etc. 
+
+Furthermore, the cost of hardware and system
+artefacts are generally overlooked~\cite{brain+devos:2009}.
 
 Making appropriate choices on the metrics of 
 performance is critical, such as execution time, operation count, and 
