@@ -136,7 +136,7 @@ of benchmark sets and analysis.
 
 % e.g. https://guides.github.com/activities/citable-code/
 
-\subsection{abstraction level} 
+\subsection{Abstraction level} 
 
 Published models require basic information to allow the models to be
 explored. On the most basic level, this can include techniques to allow
@@ -202,21 +202,22 @@ That $h = f;g : A \rightarrow C$ and $f : A \rightarrow B$ and $g : A \rightarro
 in some category with structure means that, if $f$ has property $P$ and $g$ has
 property $Q$, then $h$ has property $P \oplus Q$, where $\oplus$ is some 
 combinatorial operator in the domain of discourse. What this abstract 
-characterisation means is that a program can be tested by testing it's parts,
+characterisation means is that a program can be tested by testing its parts,
 whole system testing can be done by unit testing. 
 
-But this is only the case if the system can be decomposed, and we know that in
-many important areas like machine learning, computational science, and CFD,
-the models aren't often decomposable.  We haven't been explicit about it ---
-people normally aren't, especially for models ---  but we have been discussing
-algorithms and models assuming that they are very gross objects. We haven't
-required them to be composable or de-composable. What can this mean
-practically? If we have an algorithm $A$ that claims to run on model $M$ with
-result $R$, then there's no reason to assume that a slight modification of $A$
-will also have result $R$. Or that $A$ running on a $M * N$, for some operator
-$*$, has a suitably extended $R$ result.
+But this is only the case if the system can be decomposed, and we know
+that in many important areas like machine learning, computational
+science, and CFD, the models are not often decomposable.  We have not
+been explicit about it -- people normally are not, especially for
+models -- but we have been discussing algorithms and models assuming
+that they are very gross objects. We have not required them to be
+composable or de-composable. What can this mean practically? If we
+have an algorithm $A$ that claims to run on model $M$ with result $R$,
+then there is no reason to assume that a slight modification of $A$
+will also have result $R$. Or that $A$ running on a $M * N$, for some
+operator $*$, has a suitably extended $R$ result.
 
-We need to be very careful --- when algorithms are running on models --- when
+We need to be very careful -- when algorithms are running on models -- when
 they are running automatically, asynchronously (or due to events beyond our
 control), on a global scale, with an effect like performance results that
 matter to third-parties. Both algorithms and  models will need careful
@@ -331,37 +332,6 @@ Other structural properties like termination, stability, etc.
 Making appropriate choices on the metrics of 
 performance is critical, such as execution time, operation count, and 
 algorithmic efficiency.
-
-
-
-
-
-<<<<<<< HEAD
-%\subsection{Composability and unit testing}
-There is also the issue of how gross or un-breakable the benchmarks are. 
-The concept of "composability" is a very fundamental one in computer science. 
-That $h = f;g : A \rightarrow C$ and $f : A \rightarrow B$ and $g : A \rightarrow C$ 
-in some category with structure means that, if $f$ has property $P$ and $g$ has
-property $Q$, then $h$ has property $P \oplus Q$, where $\oplus$ is some 
-combinatorial operator in the domain of discourse. What this abstract 
-characterisation means is that a program can be tested by testing its parts,
-whole system testing can be done by unit testing. 
-
-But this is only the case if the system can be decomposed, and we know
-that in many important areas like machine learning, computational
-science, and CFD, the models are not often decomposable.  We have not
-been explicit about it -- people normally are not, especially for
-models -- but we have been discussing algorithms and models assuming
-that they are very gross objects. We have not required them to be
-composable or de-composable. What can this mean practically? If we
-have an algorithm $A$ that claims to run on model $M$ with result $R$,
-then there's no reason to assume that a slight modification of $A$
-will also have result $R$. Or that $A$ running on a $M * N$, for some
-operator $*$, has a suitably extended $R$ result.
-=======
-
->>>>>>> 4b16bf5ae7dc42981a7a8f2ec108b6e8484f4322
-
 
 
 
