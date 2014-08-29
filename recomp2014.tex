@@ -40,7 +40,9 @@ The reproduction and replication of reported scientific results is a
 widely discussed hot topic within the academic community. The
 retraction of several studies (including from a number of high-profile
 scientists) has drawn the focus of many commentators, but there is a
-wider socio-cultural problem that pervades the scientific community.
+wider socio-cultural problem that pervades the scientific community. 
+Sharing data and models often requires extra effort, and this is seen 
+as a significant overhead that may not be worth the time investment.
 
 Automated systems, which allow easy reproduction of results, offer the
 potential to incentivise a culture change and drive the adoption of
@@ -107,7 +109,8 @@ even those in top-tier academic journals, cannot be repeated with the
 same conclusions by an industrial lab~\cite{osherovich:2011}.
 
 Specific examples of the benefits of reproducible workflows to researchers 
-are now appearing in the scientific literature. New tools for membrane protein simulation~\cite{Stansfeld,Hall2014}
+are now appearing in the scientific literature. For example, new tools for membrane protein 
+simulation~\cite{Stansfeld,Hall2014}
 demonstrate how complex workflows can be automated, preventing errors
 and differences arising from manual execution, whilst making it faster
 to perform new analyses. More complex tools, such as Copernicus, aim to 
@@ -124,7 +127,7 @@ could not address.
 %computer science and the computational science disciplines uniquely
 %are able to share the raw outputs of their work as software and
 %standard format datafiles. 
-In each case, these tools take advatage of a fundemental advantage
+In each case, these tools take advantage of a fundamental advantage
 of computer science and computational science- the unique ability to
 share the raw outputs of their work as software and datafiles. However, 
 despite this advantage, and alongside
@@ -137,7 +140,9 @@ include widely discussed topics, such as choices of programming
 language and licence, as well as unreported technical details of the
 implementations and ensuring that developers get credit for their
 work\footnote{e.g. UK Community of Research Software Engineers:
-  ~\url{http://www.rse.ac.uk/}}.
+  ~\url{http://www.rse.ac.uk/}}. One fundamental barrier to sharing remains - 
+	the overhead in time and effort required work with enough information to
+	make models, algorithms and data reusable by a third-party can be significant.
 
 % further to #overlyhonestmethods...
 % http://www.phdcomics.com/comics.php?f=1689
@@ -153,10 +158,11 @@ However, even when this is considered, the testing of the benchmarks
 themselves may be non-trivial. Benchmarks may be tailored to the
 specific problems being addressed by the algorithm, and may not be
 expected to cover all edge cases. Implementation details, such as
-floating point rounding behaviour, may affect benchmark results.
-Furthermore, for high performance computing applications, repeating
+floating point rounding behaviour and order-of-execution, may affect 
+benchmark results. Furthermore, for high performance computing 
+applications, repeating
 benchmark results may not be possible by other groups without
-equivalent hardware resources. Here we extend a previous
+identical hardware resources. Here we extend a previous
 proposal~\cite{crick-et-al_wssspe2} by specifically discussing the 
 problems posed by models, considering the issues surrounding sharing
 and analysing benchmark sets.
@@ -168,7 +174,7 @@ and analysing benchmark sets.
 \subsection{Abstraction levels} 
 
 A model describes reality at some level of abstraction. The more
-detailed it is, the more faithful it is, but also then the more
+detailed it is, the more faithful it often purports to be, but also then the more
 special purpose (and so use-less to many others). It is an important
 aspect of the modelling task as to what level (abstract versus
 concrete) to model at. But often it is implicit, embodied but not
@@ -238,8 +244,8 @@ abstract characterisation means is that a program can be tested by
 testing its parts, whole system testing can be done by unit testing.
 
 But this is only the case if the system can be decomposed, and we know
-that in many important areas like machine learning, computational
-science, and CFD, the models are not often decomposable.  We have not
+that in many important areas such as machine learning and computational
+science, the models are not often decomposable.  We have not
 been explicit about it -- people normally are not, especially for
 models -- but we have been discussing algorithms and models assuming
 that they are very gross objects. We have not required them to be
@@ -251,7 +257,7 @@ operator $*$, has a suitably extended $R$ result.
 
 We need to be very careful -- when algorithms are running on models --
 when they are running automatically, asynchronously (or due to events
-beyond our control), on a global scale, with an effect like
+beyond our control), on a global scale, with an effect such as
 performance results that matter to third-parties. Both algorithms and
 models will need careful curating.
 
@@ -306,7 +312,14 @@ dynamics simulation, this is sufficient to cause two simulations with
 otherwise identical starting states to diverge over time. As such, the
 inherent properties of the model and simulation should be taken into
 account in the overall protocol design, and noted in any attempts to
-reproduce the behaviour.
+reproduce the behaviour. Building, curating and sharing of scientific 
+workflows can provide consistently reusablity, but this can require additional
+effort on the scientist. %reference Carole Goble's MyExperiment work.
+Workflows are often most effective where scientific
+processes need to be repeatable many times, therefore amortising the upfront
+cost of creating the workflow and its components. This approach may not
+be appropriate for more exploratory science, where the researcher tends to 
+use a more interactive process with their data and models.
 
 In several disciplines, electronic lab notebooks have become the
 norm. These tools, combined with open repositories e.g. FigShare,
@@ -324,16 +337,16 @@ work flows into prototype scripts, to aid reproducibility.
 A key question in reproducing research in a computational context is
 whether performance is a key issue. For models of the physical world,
 such as computational fluid dynamics and molecular dynamics, it is the
-resulting physics that is typically important, rather than how fast it
+resulting physics that is typically important to the end user, rather than how fast it
 took to solve the computational problem. In algorithms research,
 performance can be the key research result, and therefore reproducing
 this is important. Another example is in high performance computing
 where scalability of code (e.g. gromacs, NAMD, Desmond). Here the aim
 is to make simulations run more efficiently over large numbers of
-cores/nodes. On-demand cloud resources like Amazon spot market
-instances offer a route to reproducing computational experiments.
+cores/nodes. On-demand cloud resources such as Microsoft Azure 
+offer a potentially attractive route to reproducing computational experiments.
 
-A key question is which performance metric to use. Wall clock time is
+An important question is which performance metric to use. Wall clock time is
 commonly used, but this does not allow for long-term performance
 reproducibility as any such benchmarking is a snapshot in time. This
 is true whether the underlying hardware the software is running on is
@@ -371,9 +384,10 @@ serious project without running the smoke tests. Later, you could be
 cleverer and run the tests via the VCS's pre-commit hook. That way
 you'd never forget to run the tests. All of this can be done, at
 scale, on the cloud now. Services such as Jenkins, Visual Studio
-Online, etc schedule the tests to run as soon as you commit. Suppose
-we have the publicly accessible benchmarks. It seems a small step to
-hook these Continuous Integration (CI) systems up to the algorithm
+Online, etc schedule the tests to run as soon as you commit. We envisage 
+moving to a world in which benchmarks become available online, in the 
+same vein as open access of publications and research data. It seems a 
+small step to hook these Continuous Integration (CI) systems up to the algorithm
 implementations that are written to run on these benchmarks.
 
 Suppose you have come up with a better algorithm to deal with some of
@@ -391,16 +405,21 @@ all registered models, and the results are published. The CI servers
 act as the kernel.org, the authoritative source, of results for these
 algorithms running on these benchmarks.
 
-There are already several web services that nearly do all of this. A
-service that is just a bit more finished, that ties up the loose ends,
-would mean that algorithms and model would evolve together, and always
+There are already several web services that nearly do all of this %such as???.
+We feel that a service that can integrate some of these features is possible that 
+would allow algorithms and models to evolve together, and always
 be reproducible.
-
 
 A system as described here has several up front benefits- it link papers 
 more closely to their outputs, making external validation easier and 
-allowing interested users to explore unaddressed sets of models. These 
-features alone will be expected to accelerate the research cycle, with
+allowing interested users to explore unaddressed sets of models. Critically, it helps
+researchers to be more productive, rather than being an overhead on their 
+day-to-day work. In the same way that tools such as Github  make collaborating 
+easier while simultaneously allowing effortless sharing, we hope that we can design
+and build a system that is similarly usable for sharing and testing benchmarks online. 
+
+
+These features alone will be expected to accelerate the research cycle, with
 major benefits. \emph{4th paradigm}~\cite{hey:2009}.
 
 % BibTeX users
