@@ -137,11 +137,13 @@ reimplementation of algorithms~\cite{crick-et-al_wssspe2}. These
 include widely discussed topics, such as choices of programming
 language and software licence, as well as unreported technical details
 of the implementations and ensuring that developers get credit for
-their work\footnote{e.g. UK Community of Research Software Engineers:
-\url{http://www.rse.ac.uk/}}. One fundamental barrier to sharing
-remains - the overhead in time and effort required work with enough
-information to make models, algorithms and data reusable by a
-third-party can be significant.
+their work\footnote{e.g. Software Sustainability Institute
+(\url{http://www.software.ac.uk}) and the UK Community of Research
+Software Engineers (\url{http://www.rse.ac.uk})}. One fundamental
+barrier to sharing remains -- the overhead in time and effort required
+work with enough information to make models, algorithms and data
+reusable by a third-party can be significant (see
+Figure~\ref{fig:reprodres}).
 
 % further to #overlyhonestmethods...
 % http://www.phdcomics.com/comics.php?f=1689
@@ -149,7 +151,7 @@ third-party can be significant.
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=\columnwidth]{phd031214s.png}
-\caption{The perils of reproducible research\newline [credit:: \url{http://www.phdcomics.com/comics.php?f=1689}]}
+\caption{The perils of reproducible research\newline [credit: \url{http://www.phdcomics.com/comics.php?f=1689}]}
 \label{fig:reprodres} 
 \end{figure}
 
@@ -175,8 +177,8 @@ A model describes reality at some level of abstraction. The more
 detailed it is, the more `faithful' it often purports to be, but also
 then the more special-purpose (and so useless to many others). It is
 an important aspect of the modelling task as to what level (abstract
-versus concrete) to model at. But often it is implicit, embodied but
-not embedded, in the model.
+vs. concrete) to model at. But often it is implicit, embodied but not
+embedded, in the model.
 
 % Published models require basic information to allow the models to be
 % explored. On the most basic level, this can include techniques to
@@ -272,10 +274,10 @@ Database\footnote{\url{http://termination-portal.org/wiki/TPDB}} are
 on that journey. Such repositories would allow the tests to be taken
 and easily analysed by any competitor tool. There has been some work
 towards developing this connected infrastructure: for example,
-knowledge management systems to preserve and share whole auto-tuning
-and machine learning setups for optimisation, collecting all related
-artefacts and their software and hardware dependencies besides just
-performance data~\cite{fursin-et-al:2014}.
+knowledge management systems to preserve and share complete
+auto-tuning and machine learning setups for optimisation, collecting
+all related artefacts and their software and hardware dependencies
+besides just performance data~\cite{fursin-et-al:2014}.
 
 
 \section{Workflow of meta-models}
@@ -293,31 +295,32 @@ which might not be part of any of the explicitly shared codebase. This
 can be supported by open protocols, stored in electronic lab notebooks
 during the process of model building. However even in this case,
 assumed knowledge may prevent simple replication by a third party.
-%Even better would be tools which aid the transformation of text based
+%Even better would be tools which aid the transformation of text-based
 %protocols into real scripts.
 
 One common approach to tackling complex protocols (or workflows) in
 computational sciences is to automate the process by scripting the
 laborious elements, such as in the Taverna Workflow Management
-System\footnote{\url{http://www.taverna.org.uk/}}. In its initial
-steps, Sidekick~\cite{Hall2014Sidekick} builds an initial model of a
-$\alpha$-helical peptide, performs an energy minimisation of the
-peptide \emph{in vacuo}, solvates the peptide, adds counter-ions, and
-runs a second energy minimisation. This is all done without any user
-actions, and the subsequent replicates are performed with different
-random seeds to collect accurate statistics. Even in this ideal case
-however, variations may arise between replicates. In testing on ac
-hybrid AMD/Intel cluster, one of the authors found that the solvation
-step added a variable number of water molecules. In a molecular
-dynamics simulation, this is sufficient to cause two simulations with
-otherwise identical starting states to diverge over time. As such, the
-inherent properties of the model and simulation should be taken into
-account in the overall protocol design, and noted in any attempts to
-reproduce the behaviour. Building, curating and sharing of scientific
-workflows can provide consistently reusablity, but this can require
-additional effort on the scientist.  Workflows are often most
-effective where scientific processes need to be repeatable many times,
-therefore amortising the upfront cost of creating the workflow and its
+System\footnote{\url{http://www.taverna.org.uk/}}. An specific example
+for simulating molecular dynamics is Sidekick~\cite{Hall2014Sidekick}:
+in its early steps, it builds an initial model of a $\alpha$-helical
+peptide, performs an energy minimisation of the peptide \emph{in
+vacuo}, solvates the peptide, adds counter-ions, and runs a second
+energy minimisation. This is all done without any user actions, and
+the subsequent replicates are performed with different random seeds to
+collect accurate statistics. Even in this ideal case however,
+variations may arise between replicates. In testing on a hybrid
+AMD/Intel cluster, one of the authors found that the solvation step
+added a variable number of water molecules. In a molecular dynamics
+simulation, this is sufficient to cause two simulations with otherwise
+identical starting states to diverge over time. As such, the inherent
+properties of the model and simulation should be taken into account in
+the overall protocol design, and noted in any attempts to reproduce
+the behaviour. Building, curating and sharing of scientific workflows
+can provide consistently reusability, but this can require additional
+effort on the scientist.  Workflows are often most effective where
+scientific processes need to be repeatable many times, therefore
+amortising the upfront cost of creating the workflow and its
 components. This approach may not be appropriate for more exploratory
 science, where the researcher tends to use a more interactive process
 with their data and models. A successful example of community-building
@@ -327,8 +330,8 @@ make it easy to find, use and share scientific workflows and other
 research objects.
 
 In several disciplines, electronic lab notebooks have become the
-norm. These tools, combined with open repositories e.g. FigShare,
-ZappyLab, facilitate the sharing of protocols. This may be needed for
+norm. These tools, combined with open repositories such as FigShare
+and ZappyLab, facilitate the sharing of protocols. This may be needed for
 legal compliance (e.g. drug trials), but has been successfully used in
 large research consortia, for example the use of ConturELN by the
 structural genomics consortium in Oxford. Similarly, ZappyLab aims to
@@ -342,33 +345,34 @@ work flows into prototype scripts, to aid reproducibility.
 A key question in reproducing research in a computational context is
 whether performance is a key issue. For models of the physical world,
 such as computational fluid dynamics and molecular dynamics, it is the
-resulting physics that is typically important to the end user, rather than how fast it
-took to solve the computational problem. In algorithms research,
-performance can be the key research result, and therefore reproducing
-this is important. Another example is in high performance computing
-where scalability of code (e.g. gromacs, NAMD, Desmond). Here the aim
-is to make simulations run more efficiently over large numbers of
-cores/nodes. On-demand cloud resources such as Microsoft Azure 
-offer a potentially attractive route to reproducing computational experiments.
+resulting physics that is typically important to the end user, rather
+than how fast it took to solve the computational problem. In
+algorithms research, performance can be the key research result, and
+therefore reproducing this is important. Another example is in high
+performance computing where scalability of code (e.g. gromacs, NAMD,
+Desmond). Here the aim is to make simulations run more efficiently
+over large numbers of cores/nodes. On-demand cloud resources such as
+Microsoft Azure offer a potentially attractive route to reproducing
+computational experiments.
+% amazon? comet cloud?
 
-An important question is which performance metric to use. Wall clock time is
-commonly used, but this does not allow for long-term performance
-reproducibility as any such benchmarking is a snapshot in time. This
-is true whether the underlying hardware the software is running on is
-physical or virtual hardware. Some ``op count'' is a more interesting
-measure. Also, other structural properties of the models the
-algorithms are running on, are more interesting. In the field of
-system biology, whether an algorithm can prove properties like
-termination, stability, interesting start conditions, etc, are useful
-measurements of whether one algorithm is better than
-another. Similarly, in Answer Set Programming, the cost of hardware
-and system artefacts are important but generally overlooked
-(\cite{brain+devos:2009} is a good example of considering them).
-
-
+An important question is which performance metric to use. Wall clock
+time is commonly used, but this does not allow for long-term
+performance reproducibility as any such benchmarking is a snapshot in
+time. This is true whether the underlying hardware the software is
+running on is physical or virtual hardware. Some ``op count'' is a
+more interesting measure. In many cases, the cost of hardware and
+system artefacts are important but often overlooked, such as for
+solvers in Answer Set Programming~\cite{brain+devos:2009}. Also, other
+structural properties of the models the algorithms are running on, are
+more interesting. In the field of system biology, whether an algorithm
+can prove properties like termination, stability, interesting start
+conditions, etc, are useful measurements of whether one algorithm is
+better than another. Recent initiatives such as the Recomputation
+Manfesto, explicitly ignore performance metrics.
+% cite...
 
 \section{Future outlook}
-
 
 % Limitations presented by big data- will some models resist validation?
 
@@ -378,56 +382,68 @@ and system artefacts are important but generally overlooked
 
 %\section{Continuous Integration for models}
 
-The whole premise of this paper is that Algorithms (implementations)
-and Models (benchmarks) go together: algorithms are designed for
-certain types of models; models, though created to mimic some physical
-reality, also serve to stress the current known algorithms. A
-cloud-based service can make this link explicit.
+The whole premise of this paper is that {\emph{algorithms}}
+(implementations) and {\emph{models}} (benchmarks) are inextricably
+linked and should go together. Algorithms are designed for certain
+types of models; models, though created to mimic some physical
+reality, also serve to stress the current known algorithms. An
+integrated autonomous cloud-based service can make this link explicit.
 
-Wind back several decades, and no one would {\texttt{cvs commit}} to a
-serious project without running the smoke tests. Later, you could be
-cleverer and run the tests via the VCS's pre-commit hook. That way
-you'd never forget to run the tests. All of this can be done, at
-scale, on the cloud now. Services such as Jenkins, Visual Studio
-Online, etc schedule the tests to run as soon as you commit. We envisage 
-moving to a world in which benchmarks become available online, in the 
-same vein as open access of publications and research data. It seems a 
-small step to hook these Continuous Integration (CI) systems up to the algorithm
-implementations that are written to run on these benchmarks.
+In the software development world, no one would (should) commit to a
+project without first running the smoke tests. You could be clever and
+run the tests via the version control system's pre-commit hook. That
+way you would never forget to run the tests. All of this can be done,
+at scale, on the cloud now. Services such as Jenkins, Visual Studio
+Online, etc, schedule the tests to run as soon as you commit. We
+envisage moving to a world in which benchmarks become available
+online, in the same vein as open access of publications and research
+data. It seems a small step to hook these Continuous Integration (CI)
+systems up to the algorithm implementations that are written to run on
+these benchmarks.
 
 Suppose you have come up with a better algorithm to deal with some of
 these benchmarks. You write up the paper on the algorithm but, more
 importantly, you also register the implementation of your algorithm at
-the service, as a possible algorithm to run on this benchmark set.
+this open service, as a possible algorithm to run on this benchmark
+set.
 
-The benchmarks live in distributed git repositories. Some of the
-servers that house these repos are CI servers. Now, when you push a
-commit to your algorithm, or someone else pushes a commit to theirs,
-or when someone else adds a new benchmarks, the service's CI system is
-activated. It is also activated when a new library, firmware upgrade,
-new API change, etc happens too. All registered algorithms are run on
-all registered models, and the results are published. The CI servers
-act as the kernel.org, the authoritative source, of results for these
-algorithms running on these benchmarks.
+The benchmarks live in distributed git (or similar) repositories. Some
+of the servers that house these repositories are CI servers. Now, when
+you push a commit to your algorithm, or someone else pushes a commit
+to theirs, or when someone else adds a new benchmarks, the service's
+CI system is triggered. It is also activated when a new library,
+firmware upgrade, new API change, etc, happens. All registered
+algorithms are run on all registered models, and the results are
+published. The CI servers act as the kernel.org, the authoritative
+source, of results for these algorithms running on these benchmarks.
 
-There are already several web services that nearly do all of this %such as???.
-We feel that a service that can integrate some of these features is possible that 
-would allow algorithms and models to evolve together, and always
-be reproducible.
+%such as? do we need examples here?
+There are already several web services that nearly do all of this
+things. We feel that a service that can integrate some of these
+features is possible that would then allow algorithms and models to
+evolve together, and always be reproducible.
 
-A system as described here has several up front benefits- it link papers 
-more closely to their outputs, making external validation easier and 
-allowing interested users to explore unaddressed sets of models. Critically, it helps
-researchers to be more productive, rather than being an overhead on their 
-day-to-day work. In the same way that tools such as Github  make collaborating 
-easier while simultaneously allowing effortless sharing, we hope that we can design
-and build a system that is similarly usable for sharing and testing benchmarks online. 
+A system as described here has several up-front benefits: it link
+papers more closely to their outputs, making external validation
+easier and allows interested users to explore unaddressed sets of
+models. Critically, it helps researchers to be more productive, rather
+than being an overhead on their day-to-day work. In the same way that
+tools such as GitHub make collaborating easier while simultaneously
+allowing effortless sharing, we hope that we can design and build a
+system that is similarly usable for sharing and testing benchmarks
+online.
+
+In summary, this proposed new e-infrastructure could have a profound
+impact on the way that computational science is performed,
+repositioning the role of models, algorithms and benchmarks and
+accelerate the research cycle~\cite{hey:2009}. Furthermore, it would
+effect a cultural change by reducing overheads and improving the
+efficiency of researchers.
 
 
-These features alone will be expected to accelerate the research cycle, with
-major benefits. \emph{4th paradigm}~\cite{hey:2009}.
+% balance refs at the end
+\IEEEtriggeratref{5}
 
-% BibTeX users
 \bibliographystyle{IEEEtran}
 \bibliography{recomp2014}
 
