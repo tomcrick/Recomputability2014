@@ -30,50 +30,14 @@ CTLnames_show_etal = "3"
 }
 
 @inproceedings{Pronk,
-	    abstract = {{Biomolecular simulation is a core application on supercomputers, but it is exceptionally difficult to achieve the strong scaling necessary to reach biologically relevant timescales. Here, we present a new paradigm for parallel adaptive molecular dynamics and a publicly available implementation: Copernicus. This framework combines performance-leading molecular dynamics parallelized on three levels (SIMD, threads, and message-passing) with kinetic clustering, statistical model building and real-time result monitoring. Copernicus enables execution as single parallel jobs with automatic resource allocation. Even for a small protein such as villin (9,864 atoms), Copernicus exhibits near-linear strong scaling from 1 to 5,376 AMD cores. Starting from extended chains we observe structures 0.6 \AA{} from the native state within 30h, and achieve sufficient sampling to predict the native state without a priori knowledge after 80--90h. To match Copernicus' efficiency, a classical simulation would have to exceed 50 microseconds per day, currently infeasible even with custom hardware designed for simulations.}},
-	        address = {New York, NY, USA},
-		    author = {Pronk, Sander and Larsson, Per and Pouya, Iman and Bowman, Gregory R. and Haque, Imran S. and Beauchamp, Kyle and Hess, Berk and Pande, Vijay S. and Kasson, Peter M. and Lindahl, Erik},
-		        booktitle = {Proceedings of 2011 International Conference for High Performance Computing, Networking, Storage and Analysis},
-			    citeulike-article-id = {12118343},
-			        citeulike-linkout-0 = {http://portal.acm.org/citation.cfm?id=2063384.2063465},
-				    citeulike-linkout-1 = {http://dx.doi.org/10.1145/2063384.2063465},
-				        doi = {10.1145/2063384.2063465},
-					    isbn = {978-1-4503-0771-0},
-					        keywords = {molecular\_dynamics},
-						    location = {Seattle, Washington},
-						        posted-at = {2013-03-06 22:44:14},
-							    priority = {2},
-							        publisher = {ACM},
-								    series = {SC '11},
-								        title = {{Copernicus: a new paradigm for parallel adaptive molecular dynamics}},
-									    url = {http://dx.doi.org/10.1145/2063384.2063465},
-									        year = {2011}
+  author =    {Pronk, Sander and Larsson, Per and Pouya, Iman and Bowman, Gregory R. and Haque, Imran S. and Beauchamp, Kyle and Hess, Berk and Pande, Vijay S. and Kasson, Peter M. and Lindahl, Erik},
+  booktitle = {{Proceedings of 2011 International Conference for High Performance Computing, Networking, Storage and Analysis (SC'11)}},
+  publisher = {ACM Press},
+  title =     {{Copernicus: a new paradigm for parallel adaptive molecular dynamics}},
+  year =      {2011}
 }
 
 @Inproceedings {Cook,
-	abstract     = {<p>The stability of biological models is an important test for establishing their
-		                soundness and accuracy. Stability in biological systems represents the ability of
-					                a robust system to always return to homeostasis. In recent work, modular
-							                approaches for proving stability have been
-
-									                found to be swift and scalable. If stability is however not proved, the currently
-											                available techniques apply an exhaustive search through the unstable state space
-													                to find loops. This search is frequently prohibitively computationally expensive,
-				                limiting its usefulness. Here we present a new modular approach eliminating the
-							                need for an exhaustive search
-
-									                for loops.  Using models of biological systems we show that the technique finds
-												                loops significantly faster than brute force approaches. Furthermore, for a subset
-															                of stable systems which are resistant to modular proofs, we observe a speed up of
-																	                up to 3 orders of magnitude as the exhaustive searches for loops which cause
-																			                instability are avoided. With our new procedure we are able to prove instability
-																					                and stability in a number of
-
-																							                realistic biological models, including adaptation in bacterial chemotaxis, the
-																									                lambda phage lysogeny/lysis switch, voltage gated channel opening and cAMP
-																											                oscillations in the slime mold Dictyostelium discoideum. This new approach will
-																													                support the development of new clinically relevant tools for industrial
-																															                biomedicine.</p>},
 	author       = {Byron Cook and Jasmin Fisher and Benjamin Hall and Samin Ishtiaq and Garvit
 		                Juniwal and Nir Piterman},
 	booktitle    = {Computer Aided Verification (CAV)},

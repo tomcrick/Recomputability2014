@@ -4,7 +4,7 @@
 \usepackage[hyphens]{url}
 \usepackage{graphicx}
 \usepackage[noadjust]{cite}
-\usepackage[pdftex,colorlinks=true]{hyperref}
+\usepackage[pdftex,colorlinks=true,hyperfootnotes=false]{hyperref}
 \IEEEoverridecommandlockouts
 
 \begin{document}
@@ -14,7 +14,7 @@
 %\title{On Usefully Publishing Scientific Models} 
 %\title{Learning to share: usefully publishing scientific models}
 %\title{Learning to share: publishing useful scientific models}
-\title{``Share and Enjoy''\\Publishing Useful and Usable Scientific Models}
+\title{``Share and Enjoy'':\\Publishing Useful and Usable Scientific Models}
 
 % author names and affiliations
 % use a multiple column layout for up to three different
@@ -35,13 +35,12 @@ Email: {\url{{benhall,samin.ishtiaq,kenji.takeda}@microsoft.com}}}}
 \maketitle
 
 \begin{abstract}
-% lock: Tom 
 The reproduction and replication of reported scientific results is a
-widely discussed hot topic within the academic community. The
-retraction of several studies (including from a number of high-profile
-scientists) has drawn the focus of many commentators, but there is a
-wider socio-cultural problem that pervades the scientific community. 
-Sharing data and models often requires extra effort, and this is seen 
+hot topic within the academic community. The retraction of numerous
+studies from a wide range of disciplines from climate science to
+bioscience has drawn the focus of many commentators, but there exists
+a wider socio-cultural problem that pervades the scientific community.
+Sharing data and models often requires extra effort, and this is seen
 as a significant overhead that may not be worth the time investment.
 
 Automated systems, which allow easy reproduction of results, offer the
@@ -51,49 +50,48 @@ this paper, we discuss the value of improved access and sharing of the
 two key types of results arising from work done in the computational
 sciences: models and algorithms. We propose the development of an
 integrated cloud-based system underpinning computational science,
-linking together software, toolchains, workflows and outputs,
-providing a seamless automated infrastructure for the verification and
-validation of scientific models and in particular, performance
-benchmarks.
+linking together software and data repositories, toolchains, workflows
+and outputs, providing a seamless automated infrastructure for the
+verification and validation of scientific models and in particular,
+performance benchmarks.
 \end{abstract}
 
 % keywords
 \begin{IEEEkeywords}
 Reproducibility, Benchmarks, Models, Cloud Services,
-Computational Science, Open Science
+Computational Science, e-Infrastructure, Open Science
 \end{IEEEkeywords}
 
 \IEEEpeerreviewmaketitle
 
 \section{Introduction}
-% lock: Ben 
-Two key types of results arise from work done in the computational
-sciences: models and algorithms. Models represent an abstraction of
-reality, and their behaviour is expected to be reliably reproduced if
-different algorithms are used. This validation of a model's behaviour
-can be impacted by a number of factors relating to the specific
-techniques used, but similar approaches are expected to give broadly
-the same results.  In contrast, when new algorithms are proposed to
-replace or supplement existing algorithms, they are expected to
-verifiably replicate the results of other algorithms.
 
-However, neither class of result exists in isolation: a new algorithm is
-dependent on a set of models (or benchmarks) to demonstrate its new
+Two key types of results arise from work done in the computational
+sciences: {\emph{models}} and {\emph{algorithms}}. Models represent an
+abstraction of reality, and their behaviour is expected to be reliably
+reproduced even if different algorithms are used. This validation of a
+model's behaviour can be impacted by a number of factors relating to
+the specific techniques used, but similar approaches are expected to
+give broadly the same results.  In contrast, when new algorithms are
+proposed to replace or supplement existing algorithms, they are
+expected to verifiably replicate the results of other algorithms.
+
+However, neither class of result exists in isolation: a new algorithm
+is dependent on a set of models (or benchmarks) to demonstrate its new
 capabilities. Equally, model development can both necessitate the
 development of new algorithms and highlight the differences between
 alternative approaches. Whilst algorithms and their implementations
 have been highlighted as a potential barrier to
-reproducibility~\cite{crick-et-al_wssspe2}, in this paper we discuss the value
-of improved access and sharing of models in avoiding mistakes and in
-generating new scientific insights. We describe efforts to reproduce
-computational models and algorithms, specifically the multitude of issues
-related to benchmarks of models and algorithms. 
-We conclude with thoughts % SI: are we doing this yet? 
-on where efforts should be focused in both the short- and
-long-term to move to a world in which computational reproducibility
-helps researchers achieve their goals, rather than being perceived as
-an overhead.
-
+reproducibility~\cite{crick-et-al_wssspe2}, in this paper we discuss
+the value of improved access and sharing of models in reducing
+mistakes and in generating new scientific insights. We describe
+efforts to reproduce computational models and algorithms, specifically
+the multitude of issues relating to benchmarking of models and
+algorithms.  We conclude with thoughts on where efforts should be
+focused in both the short- and long-term to move to a world in which
+computational reproducibility helps researchers achieve their goals,
+rather than being perceived as an overhead.
+% SI: are we doing this yet?
 
 %\section{Motivation}
 The reproduction and replication of reported scientific results is a
@@ -108,41 +106,42 @@ community, with estimates that as much as 50\% of published studies,
 even those in top-tier academic journals, cannot be repeated with the
 same conclusions by an industrial lab~\cite{osherovich:2011}.
 
-Specific examples of the benefits of reproducible workflows to researchers 
-are now appearing in the scientific literature. For example, new tools for membrane protein 
-simulation~\cite{Stansfeld,Hall2014}
-demonstrate how complex workflows can be automated, preventing errors
-and differences arising from manual execution, whilst making it faster
-to perform new analyses. More complex tools, such as Copernicus, aim to 
-automate more generic molecular dynamics workflows~\cite{Pronk}.
-Alongside this, recent work in executable
-biology~\cite{Cook} showed how a new class of models, representing a
-defined property of biological networks, defeated an existing
-algorithm for proving stability. As such, it was the broader
-application of a new algorithm to additional models (or benchmarks)
-which highlighted an unexplored but important phenomena the algorithm
-could not address.
+Specific examples of the benefits of reproducible workflows to
+researchers are now appearing in the scientific literature. For
+example, new tools for membrane protein
+simulation~\cite{Stansfeld,Hall2014} demonstrate how complex workflows
+can be automated, preventing errors and differences arising from
+manual execution, whilst making it faster to perform new
+analyses. More complex tools, such as Copernicus, aim to automate more
+generic molecular dynamics workflows~\cite{Pronk}. Alongside this,
+recent work in executable biology~\cite{Cook} showed how a new class
+of models, representing a defined property of biological networks,
+defeated an existing algorithm for proving stability. As such, it was
+the broader application of a new algorithm to additional models (or
+benchmarks) which highlighted an unexplored but important phenomena
+the algorithm could not address.
 
 %Whilst experimental work requires detailed protocol descriptions,
 %computer science and the computational science disciplines uniquely
 %are able to share the raw outputs of their work as software and
 %standard format datafiles. 
-In each case, these tools take advantage of a fundamental advantage
-of computer science and computational science- the unique ability to
-share the raw outputs of their work as software and datafiles. However, 
-despite this advantage, and alongside
-ongoing -- and significant -- changes to the traditional models of
-academic dissemination and
+In each case, these tools take advantage of a fundamental advantage of
+computer science and more broadly, computational science: the unique
+ability to share the raw outputs of their work as software and
+datafiles. However, despite this advantage, and alongside ongoing --
+and significant -- changes to the traditional models of academic
+dissemination and
 publication~\cite{deroure:2010,stodden-et-al:2013,fursin+dubach:2014},
 there remain cultural and technical barriers to both the sharing and
 reimplementation of algorithms~\cite{crick-et-al_wssspe2}. These
 include widely discussed topics, such as choices of programming
-language and licence, as well as unreported technical details of the
-implementations and ensuring that developers get credit for their
-work\footnote{e.g. UK Community of Research Software Engineers:
-  ~\url{http://www.rse.ac.uk/}}. One fundamental barrier to sharing remains - 
-	the overhead in time and effort required work with enough information to
-	make models, algorithms and data reusable by a third-party can be significant.
+language and software licence, as well as unreported technical details
+of the implementations and ensuring that developers get credit for
+their work\footnote{e.g. UK Community of Research Software Engineers:
+\url{http://www.rse.ac.uk/}}. One fundamental barrier to sharing
+remains - the overhead in time and effort required work with enough
+information to make models, algorithms and data reusable by a
+third-party can be significant.
 
 % further to #overlyhonestmethods...
 % http://www.phdcomics.com/comics.php?f=1689
@@ -150,7 +149,7 @@ work\footnote{e.g. UK Community of Research Software Engineers:
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=\columnwidth]{phd031214s.png}
-\caption{Reproducible research\newline [source: \url{http://www.phdcomics.com/comics.php?f=1689}]}
+\caption{The perils of reproducible research\newline [credit:: \url{http://www.phdcomics.com/comics.php?f=1689}]}
 \label{fig:reprodres} 
 \end{figure}
 
@@ -158,15 +157,14 @@ However, even when this is considered, the testing of the benchmarks
 themselves may be non-trivial. Benchmarks may be tailored to the
 specific problems being addressed by the algorithm, and may not be
 expected to cover all edge cases. Implementation details, such as
-floating point rounding behaviour and order-of-execution, may affect 
-benchmark results. Furthermore, for high performance computing 
-applications, repeating
-benchmark results may not be possible by other groups without
-identical hardware resources. Here we extend a previous
-proposal~\cite{crick-et-al_wssspe2} by specifically discussing the 
+pseudo-random number generation, floating-point rounding behaviour and
+order-of-execution, may affect benchmark results. Furthermore, for
+high performance computing applications, repeating benchmark results
+may not be possible by other groups without identical hardware
+resources. Here we extend a previous
+proposal~\cite{crick-et-al_wssspe2} by specifically discussing the
 problems posed by models, considering the issues surrounding sharing
 and analysing benchmark sets.
-
 
 
 \section{The nature of models}
@@ -174,18 +172,18 @@ and analysing benchmark sets.
 \subsection{Abstraction levels} 
 
 A model describes reality at some level of abstraction. The more
-detailed it is, the more faithful it often purports to be, but also then the more
-special purpose (and so use-less to many others). It is an important
-aspect of the modelling task as to what level (abstract versus
-concrete) to model at. But often it is implicit, embodied but not
-embedded, in the model.
+detailed it is, the more `faithful' it often purports to be, but also
+then the more special-purpose (and so useless to many others). It is
+an important aspect of the modelling task as to what level (abstract
+versus concrete) to model at. But often it is implicit, embodied but
+not embedded, in the model.
 
 % Published models require basic information to allow the models to be
 % explored. On the most basic level, this can include techniques to
 % allow files to be parsed, but in this parsing errors may arise from
 % details stored in the original implementations of the model analysis
 % algorithms.  
-An example of this comes from the treatment of floating point
+An example of this comes from the treatment of floating-point
 conversions in qualitative networks in systems
 biology~\cite{Schaub2007}. Each variable in a network has an algebraic
 target function which describes how the variable should change at each
@@ -193,8 +191,8 @@ step. The variables themselves are integers, and the target function
 may return a float, which must be converted to an integer for the
 update. This can be done in the target function itself, but if the
 function returns a float, the specific implementation dictates if this
-is a round, floor or ceil function. This implicit (to the model) but
-specific (from the implementation) may change the results of the
+is a rounding, floor or ceiling function. This implicit (to the model)
+but specific (from the implementation) may change the results of the
 modelling.
 
 Another example showing how the implementation of qualitative networks
@@ -203,7 +201,7 @@ model.  Whilst the formalism allows the variables in a model to have
 differing ranges of integers, the mechanism of conversion is not
 specified in the formalism. As such, this is another area where
 implementations can dictate the precise behaviour of the model, and
-needs to be explicitly annotated on the model.
+thus needs to be explicitly annotated on the model.
 
 
 %Eg., Int. Does it mean mathematical integers, C long, C long long, int32, uint64? 
@@ -212,7 +210,7 @@ needs to be explicitly annotated on the model.
 
 \subsection{Benchmark repositories and annotation}
 
-%Tom section
+% from Tom's section
 % Benchmarks presented in scientific papers are essentially
 % meaningless. If every paper has to be novel, then every benchmark,
 % too, will be novel; there is no monotonic, historical truth in new,
@@ -227,15 +225,16 @@ needs to be explicitly annotated on the model.
 
 A model, or a test, needs to be annotated. A benchmark is a set of
 models that have been put together for some explicit purpose. Perhaps
-the directory structure of the benchmarks tells us this purpose,
-perhaps assertions in the models tell us the purpose. In short, the
-benchmarks needs to be curated.  If the benchmark is public (allowing
+the directory structure of the benchmarks indicates this purpose,
+perhaps assertions in the models indicates this purpose; in short, the
+benchmarks needs to be curated. If the benchmark is public (allowing
 anyone to contribute), then the curation is even more necessary to
 make the models reusable.
 
+% formatting here?
 Once there is a set of tests, there is the issue of how independent or
-un-breakable the set is.  The concept of "composability" is a very
-fundamental one in computer science.  That $h = f;g : A \rightarrow C$
+un-breakable the set is.  The concept of ``composability'' is a 
+fundamental one in computer science.  That $h = f; g : A \rightarrow C$
 and $f : A \rightarrow B$ and $g : A \rightarrow C$ in some category
 with structure means that, if $f$ has property $P$ and $g$ has
 property $Q$, then $h$ has property $P \oplus Q$, where $\oplus$ is
@@ -249,77 +248,83 @@ science, the models are not often decomposable.  We have not
 been explicit about it -- people normally are not, especially for
 models -- but we have been discussing algorithms and models assuming
 that they are very gross objects. We have not required them to be
-composable or de-composable. What can this mean practically? If we
+composable or decomposable. What can this mean practically? If we
 have an algorithm $A$ that claims to run on model $M$ with result $R$,
 then there is no reason to assume that a slight modification of $A$
 will also have result $R$. Or that $A$ running on a $M * N$, for some
 operator $*$, has a suitably extended $R$ result.
 
-We need to be very careful -- when algorithms are running on models --
-when they are running automatically, asynchronously (or due to events
-beyond our control), on a global scale, with an effect such as
-performance results that matter to third-parties. Both algorithms and
-models will need careful curating.
+We thus need to be very careful when algorithms are running on models
+automatically and asynchronously (or due to events beyond our
+control), on a global scale, with an effect such as performance
+results that matter to third-parties. Both algorithms and models will
+need careful curating.
 
 Some good examples of such benchmarks are the UCI Machine Learning
 Repository\footnote{\url{http://archive.ics.uci.edu/ml/}}, the Netflix
 competition benchmarks\footnote{\url{http://www.netflixprize.com/}},
 SMT Competition\footnote{\url{http://smtcomp.sourceforge.net/2014/}},
-SV-COMP\footnote{\url{http://sv-comp.sosy-lab.org/2015/}}, the
-Answer Set Programming
+SV-COMP\footnote{\url{http://sv-comp.sosy-lab.org/2015/}}, the Answer
+Set Programming
 Competition\footnote{\url{https://www.mat.unical.it/aspcomp2014/}},
-and the Termination Problem Database 
-\footnote{\url{http://termination-portal.org/wiki/TPDB}} are
+and the Termination Problem
+Database\footnote{\url{http://termination-portal.org/wiki/TPDB}} are
 on that journey. Such repositories would allow the tests to be taken
-and easily analysed by any competitor tool. There has been work
-towards developing infrastructure: for example knowledge management
-systems to preserve and share whole auto-tuning and machine learning
-setups for optimisation, with all related artifacts and their software
-and hardware dependencies besides just performance data
-~\cite{fursin-et-al:2014}.
+and easily analysed by any competitor tool. There has been some work
+towards developing this connected infrastructure: for example,
+knowledge management systems to preserve and share whole auto-tuning
+and machine learning setups for optimisation, collecting all related
+artefacts and their software and hardware dependencies besides just
+performance data~\cite{fursin-et-al:2014}.
 
 
 \section{Workflow of meta-models}
 
 \subsection{Protocols as scripts}
 
-Studying the behaviours of complex models is not trivial. Whilst 
+Studying the behaviours of complex models is non-trivial. Whilst
 concise methods sections of papers may give a representative minimal
-protocol (or workflow), missing details may present barriers to 
-the reproduction. This is exacerbated by the inclusion of manual 
-transformation steps which may subtly change the model. Data format 
-conversions may be non-trivial or performed manually. These may 
-involve external scripts, which might not be part of any of the
-explicitly shared code. This can be supported by open protocols, stored 
-in electronic lab notebooks during the process of model building. However
-even in this case, assumed knowledge may prevent simple replicates.
+working protocol (or workflow), missing details may present barriers
+to its reproduction. This is exacerbated by the inclusion (or,
+depending on the case, omission) of manual transformation steps which
+may subtly change the model. Data format conversions may be
+non-trivial and performed manually. These may involve ad hoc scripts,
+which might not be part of any of the explicitly shared codebase. This
+can be supported by open protocols, stored in electronic lab notebooks
+during the process of model building. However even in this case,
+assumed knowledge may prevent simple replication by a third party.
 %Even better would be tools which aid the transformation of text based
 %protocols into real scripts.
 
 One common approach to tackling complex protocols (or workflows) in
 computational sciences is to automate the process by scripting the
-laborious elements. In its initial steps,
-Sidekick~\cite{Hall2014Sidekick} builds an initial model of a
+laborious elements, such as in the Taverna Workflow Management
+System\footnote{\url{http://www.taverna.org.uk/}}. In its initial
+steps, Sidekick~\cite{Hall2014Sidekick} builds an initial model of a
 $\alpha$-helical peptide, performs an energy minimisation of the
 peptide \emph{in vacuo}, solvates the peptide, adds counter-ions, and
 runs a second energy minimisation. This is all done without any user
 actions, and the subsequent replicates are performed with different
 random seeds to collect accurate statistics. Even in this ideal case
-however, variations may arise between replicates. In testing on a
-mixed AMD/Intel cluster, one of the authors found that the solvation
+however, variations may arise between replicates. In testing on ac
+hybrid AMD/Intel cluster, one of the authors found that the solvation
 step added a variable number of water molecules. In a molecular
 dynamics simulation, this is sufficient to cause two simulations with
 otherwise identical starting states to diverge over time. As such, the
 inherent properties of the model and simulation should be taken into
 account in the overall protocol design, and noted in any attempts to
-reproduce the behaviour. Building, curating and sharing of scientific 
-workflows can provide consistently reusablity, but this can require additional
-effort on the scientist. %reference Carole Goble's MyExperiment work.
-Workflows are often most effective where scientific
-processes need to be repeatable many times, therefore amortising the upfront
-cost of creating the workflow and its components. This approach may not
-be appropriate for more exploratory science, where the researcher tends to 
-use a more interactive process with their data and models.
+reproduce the behaviour. Building, curating and sharing of scientific
+workflows can provide consistently reusablity, but this can require
+additional effort on the scientist.  Workflows are often most
+effective where scientific processes need to be repeatable many times,
+therefore amortising the upfront cost of creating the workflow and its
+components. This approach may not be appropriate for more exploratory
+science, where the researcher tends to use a more interactive process
+with their data and models. A successful example of community-building
+in this space is the myExperiment
+project\footnote{\url{http://www.myexperiment.org/}}, which aims to
+make it easy to find, use and share scientific workflows and other
+research objects.
 
 In several disciplines, electronic lab notebooks have become the
 norm. These tools, combined with open repositories e.g. FigShare,
