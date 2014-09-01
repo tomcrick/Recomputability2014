@@ -197,7 +197,7 @@ is a rounding, floor or ceiling function. This implicit (to the model)
 but specific (from the implementation) may change the results of the
 modelling.
 
-Another example showing how the implementation of qualitative networks
+Another case of showing how the implementation of qualitative networks
 may change the model is the treatment of variable ranges within the
 model.  Whilst the formalism allows the variables in a model to have
 differing ranges of integers, the mechanism of conversion is not
@@ -205,6 +205,13 @@ specified in the formalism. As such, this is another area where
 implementations can dictate the precise behaviour of the model, and
 thus needs to be explicitly annotated on the model.
 
+A final example is the handling of pseudo-random number generation in
+Avida~\cite{ofria+wilke:2004}, an open source scientific software
+platform for conducting and analysing experiments with
+self-replicating and evolving computer programs. In order to produce
+consistent random number generation across platforms, it may be
+necessary to code bespoke random number generators within the system,
+which is not ideal for sharing and reproducibility.
 
 %Eg., Int. Does it mean mathematical integers, C long, C long long, int32, uint64? 
 %What about overflow behaviour? 
@@ -233,7 +240,7 @@ benchmarks needs to be curated. If the benchmark is public (allowing
 anyone to contribute), then the curation is even more necessary to
 make the models reusable.
 
-% formatting here?
+% fix formatting of definition?
 Once there is a set of tests, there is the issue of how independent or
 un-breakable the set is.  The concept of ``composability'' is a 
 fundamental one in computer science.  That $h = f; g : A \rightarrow C$
@@ -263,8 +270,8 @@ results that matter to third-parties. Both algorithms and models will
 need careful curating.
 
 Some good examples of such benchmarks are the UCI Machine Learning
-Repository\footnote{\url{http://archive.ics.uci.edu/ml/}}, the Netflix
-competition benchmarks\footnote{\url{http://www.netflixprize.com/}},
+Repository\footnote{\url{http://archive.ics.uci.edu/ml/}}, the 2009
+Netflix Prize benchmarks\footnote{\url{http://www.netflixprize.com/}},
 SMT Competition\footnote{\url{http://smtcomp.sourceforge.net/2014/}},
 SV-COMP\footnote{\url{http://sv-comp.sosy-lab.org/2015/}}, the Answer
 Set Programming
@@ -301,13 +308,13 @@ assumed knowledge may prevent simple replication by a third party.
 One common approach to tackling complex protocols (or workflows) in
 computational sciences is to automate the process by scripting the
 laborious elements, such as in the Taverna Workflow Management
-System\footnote{\url{http://www.taverna.org.uk/}}. An specific example
-for simulating molecular dynamics is Sidekick~\cite{Hall2014Sidekick}:
-in its early steps, it builds an initial model of a $\alpha$-helical
-peptide, performs an energy minimisation of the peptide \emph{in
-vacuo}, solvates the peptide, adds counter-ions, and runs a second
-energy minimisation. This is all done without any user actions, and
-the subsequent replicates are performed with different random seeds to
+System~\cite{taverna:2013}. An specific example for simulating
+molecular dynamics is Sidekick~\cite{Hall2014Sidekick}: in its early
+steps, it builds an initial model of a $\alpha$-helical peptide,
+performs an energy minimisation of the peptide \emph{in vacuo},
+solvates the peptide, adds counter-ions, and runs a second energy
+minimisation. This is all done without any user actions, and the
+subsequent replicates are performed with different random seeds to
 collect accurate statistics. Even in this ideal case however,
 variations may arise between replicates. In testing on a hybrid
 AMD/Intel cluster, one of the authors found that the solvation step
@@ -324,16 +331,18 @@ amortising the upfront cost of creating the workflow and its
 components. This approach may not be appropriate for more exploratory
 science, where the researcher tends to use a more interactive process
 with their data and models. A successful example of community-building
-in this space is the myExperiment
-project\footnote{\url{http://www.myexperiment.org/}}, which aims to
-make it easy to find, use and share scientific workflows and other
-research objects.
+in this space is the myExperiment project~\cite{myexperiment:2009},
+which aims to make it easy to find, use and share scientific workflows
+and other research objects.
 
 In several disciplines, electronic lab notebooks have become the
-norm. These tools, combined with open repositories such as FigShare
-and ZappyLab, facilitate the sharing of protocols. This may be needed for
-legal compliance (e.g. drug trials), but has been successfully used in
-large research consortia, for example the use of ConturELN by the
+norm. These tools, combined with open repositories such as
+FigShare\footnote{\url{http://www.figshare.com/}} and
+ZappyLab\footnote{\url{http://www.zappylab.com/}}, facilitate the
+sharing of protocols. This may be needed for legal compliance
+(e.g. drug trials), but has been successfully used in large research
+consortia, for example the use of Accelrys Notebook (formerly Contur
+ELN)\footnote{\url{http://accelrys.com/products/eln/contur/}} by the
 structural genomics consortium in Oxford. Similarly, ZappyLab aims to
 build a free, standardised protocol repository for the life
 sciences. Within computational sciences, efforts to mine these
@@ -349,12 +358,14 @@ resulting physics that is typically important to the end user, rather
 than how fast it took to solve the computational problem. In
 algorithms research, performance can be the key research result, and
 therefore reproducing this is important. Another example is in high
-performance computing where scalability of code (e.g. gromacs, NAMD,
-Desmond). Here the aim is to make simulations run more efficiently
-over large numbers of cores/nodes. On-demand cloud resources such as
-Microsoft Azure offer a potentially attractive route to reproducing
-computational experiments.
-% amazon? comet cloud?
+performance computing where scalability of code
+(e.g. Gromacs\footnote{\url{http://www.gromacs.org/}},
+NAMD\footnote{\url{http://www.ks.uiuc.edu/Research/namd/}},
+Desmond\footnote{\url{http://www.deshawresearch.com/resources_desmond.html}}). Here
+the aim is to make simulations run more efficiently over large numbers
+of cores/nodes. On-demand cloud resources such as Microsoft Azure and
+Amazon Elastic Compute Cloud offer a potentially attractive (and
+cost-effective) route to reproducing computational experiments.
 
 An important question is which performance metric to use. Wall clock
 time is commonly used, but this does not allow for long-term
@@ -369,8 +380,9 @@ more interesting. In the field of system biology, whether an algorithm
 can prove properties like termination, stability, interesting start
 conditions, etc, are useful measurements of whether one algorithm is
 better than another. Recent initiatives such as the Recomputation
-Manfesto, explicitly ignore performance metrics.
-% cite...
+Manifesto~\cite{gent:2013}, explicitly overlooks performance metrics,
+instead focusing on ensuring future reproducibility, with runtime
+performance regarded as a secondary issue.
 
 \section{Future outlook}
 
@@ -411,8 +423,8 @@ The benchmarks live in distributed git (or similar) repositories. Some
 of the servers that house these repositories are CI servers. Now, when
 you push a commit to your algorithm, or someone else pushes a commit
 to theirs, or when someone else adds a new benchmarks, the service's
-CI system is triggered. It is also activated when a new library,
-firmware upgrade, new API change, etc, happens. All registered
+CI system is triggered. It is also activated with the addition of a
+new library, firmware upgrades, API changes, etc. All registered
 algorithms are run on all registered models, and the results are
 published. The CI servers act as the kernel.org, the authoritative
 source, of results for these algorithms running on these benchmarks.
@@ -436,13 +448,15 @@ online.
 In summary, this proposed new e-infrastructure could have a profound
 impact on the way that computational science is performed,
 repositioning the role of models, algorithms and benchmarks and
-accelerate the research cycle~\cite{hey:2009}. Furthermore, it would
-effect a cultural change by reducing overheads and improving the
-efficiency of researchers.
+accelerate the research cycle (perhaps truly enabling a ``fourth
+paradigm'' of data intensive scientific
+discovery~\cite{hey:2009}). Furthermore, it would effect a cultural
+change by reducing overheads and improving the efficiency of
+researchers.
 
 
 % balance refs at the end
-\IEEEtriggeratref{5}
+\IEEEtriggeratref{2}
 
 \bibliographystyle{IEEEtran}
 \bibliography{recomp2014}
