@@ -141,8 +141,8 @@ their work\footnote{e.g. Software Sustainability Institute
 (\url{http://www.software.ac.uk}) and the UK Community of Research
 Software Engineers (\url{http://www.rse.ac.uk})}. One fundamental
 barrier to sharing remains -- the overhead in time and effort required
-work with enough information to make models, algorithms and data
-reusable by a third-party can be significant.
+%work with enough information 
+to make models, algorithms and data reusable by a third-party can be significant.
 % (see Figure~\ref{fig:reprodres})
 
 
@@ -186,15 +186,15 @@ embedded, in the model.
 % algorithms.  
 An example of this comes from the treatment of floating-point
 conversions in qualitative networks in systems
-biology~\cite{Schaub2007}. Each variable in a network has an algebraic
-target function which describes how the variable should change at each
-step. The variables themselves are integers, and the target function
-may return a float, which must be converted to an integer for the
-update. This can be done in the target function itself, but if the
-function returns a float, the specific implementation dictates if this
-is a rounding, floor or ceiling function. This implicit (to the model)
-but specific (from the implementation) may change the results of the
-modelling.
+biology~\cite{Schaub2007}. Each vertex or variable in a network has an
+algebraic target function which describes how the variable should
+change at each step. The variables themselves are integers, and the
+target function may return a float, which must be converted to an
+integer for the update. This can be done in the target function
+itself, but if the function returns a float, the specific
+implementation dictates if this is a rounding, floor or ceiling
+function. This implicit (to the model) but specific (from the
+implementation) may change the results of the modelling.
 
 Another case of showing how the implementation of qualitative networks
 may change the model is the treatment of variable ranges within the
@@ -216,7 +216,7 @@ which is not ideal for sharing and reproducibility.
 %What about overflow behaviour? 
 %e.g. What about random numbers?
 
-\subsection{Benchmark repositories and annotation}
+\subsection{Benchmark repositories, curated}
 
 % from Tom's section
 % Benchmarks presented in scientific papers are essentially
@@ -231,13 +231,12 @@ which is not ideal for sharing and reproducibility.
 % originals. Stripped down so much as to be useless to anyone but the
 % author vs. the referees. 
 
-A model, or a test, needs to be annotated. A benchmark is a set of
-models that have been put together for some explicit purpose. Perhaps
-the directory structure of the benchmarks indicates this purpose,
-perhaps assertions in the models indicates this purpose; in short, the
-benchmarks needs to be curated. If the benchmark is public (allowing
-anyone to contribute), then the curation is even more necessary to
-make the models reusable.
+A benchmark is a set of models that have been put together for some
+explicit purpose. Perhaps the directory structure of the benchmarks
+indicates this purpose, perhaps assertions in the models indicates
+this purpose; in short, the benchmarks need to be curated. If the
+benchmark is public (allowing anyone to contribute), then the curation
+is even more necessary to make the models reusable.
 
 Once there is a set of tests, there is the issue of how independent
 the tests are from each other.  The concept of ``composability'' is a
@@ -268,21 +267,21 @@ control), on a global scale, with an effect such as performance
 results that matter to third-parties. Both algorithms and models will
 need careful curating. Some good examples of such benchmarks are the
 UCI Machine Learning
-Repository\footnote{\url{http://archive.ics.uci.edu/ml/}}, 2009
-Netflix Prize benchmarks\footnote{\url{http://www.netflixprize.com/}},
-SMT Competition\footnote{\url{http://smtcomp.sourceforge.net/2014/}},
+Repository\footnote{\url{http://archive.ics.uci.edu/ml/}}, Netflix
+Prize benchmarks\footnote{\url{http://www.netflixprize.com/}}, SMT
+Competition\footnote{\url{http://smtcomp.sourceforge.net/2014/}},
 SV-COMP\footnote{\url{http://sv-comp.sosy-lab.org/2015/}}, Answer Set
 Programming
 Competition\footnote{\url{https://www.mat.unical.it/aspcomp2014/}},
 and the Termination Problem
-Database\footnote{\url{http://termination-portal.org/wiki/TPDB}} are
-on that journey. Such repositories would allow the tests to be taken
-and easily analysed by any competitor tool. There has been some work
-towards developing this connected infrastructure: for example,
-knowledge management systems to preserve and share complete
-auto-tuning and machine learning setups for optimisation, collecting
-all related artefacts and their software and hardware dependencies
-besides just performance data~\cite{fursin-et-al:2014}.
+Database\footnote{\url{http://termination-portal.org/wiki/TPDB}}. Such
+repositories would allow the tests to be taken and easily analysed by
+any competitor tool. There has been some work towards developing this
+connected infrastructure: for example, knowledge management systems to
+preserve and share complete auto-tuning and machine learning setups
+for optimisation, collecting all related artefacts and their software
+and hardware dependencies besides just performance
+data~\cite{fursin-et-al:2014}.
 
 
 \section{Workflow of meta-models}
@@ -310,7 +309,7 @@ System~\cite{taverna:2013} for a range of disciplines from
 heliophysics~\cite{leblanc-et-al:2013} to multi-disciplinary design
 optimisation in engineering~\cite{crick-et-al:2009}.
 
-An specific example for simulating molecular dynamics is
+A specific example for simulating molecular dynamics is
 Sidekick~\cite{Hall2014Sidekick}: in its early steps, it builds an
 initial model of a $\alpha$-helical peptide, performs an energy
 minimisation of the peptide \emph{in vacuo}, solvates the peptide,
@@ -378,12 +377,12 @@ more interesting measure. In many cases, the cost of hardware and
 system artefacts are important but often overlooked, such as for
 solvers in Answer Set Programming~\cite{brain+devos:2009}. Also, other
 structural properties of the models the algorithms are running on, are
-more interesting. In the field of system biology, whether an algorithm
-can prove properties like termination, stability, interesting start
-conditions, etc, are useful measurements of whether one algorithm is
-better than another. Recent initiatives such as the Recomputation
-Manifesto~\cite{gent:2013}, explicitly overlooks performance metrics,
-instead focusing on ensuring future
+more interesting. In the field of systems biology, whether an
+algorithm can prove properties like termination, stability,
+interesting start conditions, etc, are useful measurements of whether
+one algorithm is better than another. Recent initiatives such as the
+Recomputation Manifesto~\cite{gent:2013}, explicitly overlooks
+performance metrics, instead focusing on ensuring future
 reproducibility\footnote{\url{http://www.recomputation.org/}}, with
 runtime performance regarded as a secondary issue.
 
@@ -436,10 +435,10 @@ algorithms running on these benchmarks.
 %such as? do we need examples here?
 There are already several web services that nearly do all of this
 things. We feel that a service that can integrate some of these
-features is possible that would then allow algorithms and models to
-evolve together, and always be reproducible.
+features is possible. Such a service would then allow algorithms and
+models to evolve together, and always be reproducible.
 
-A system as described here has several up-front benefits: it link
+A system as described here has several up-front benefits: it links
 papers more closely to their outputs, making external validation
 easier and allows interested users to explore unaddressed sets of
 models. Critically, it helps researchers to be more productive, rather
@@ -449,12 +448,12 @@ allowing effortless sharing, we hope that we can design and build a
 system that is similarly usable for sharing and testing benchmarks
 online.
 
-In summary, this proposed new e-infrastructure could have a profound
+In summary, this proposed new infrastructure could have a profound
 impact on the way that computational science is performed,
 repositioning the role of models, algorithms and benchmarks and
-accelerate the research cycle (perhaps truly enabling a ``fourth
+accelerating the research cycle, perhaps truly enabling a ``fourth
 paradigm'' of data intensive scientific
-discovery~\cite{hey:2009}). Furthermore, it would effect a cultural
+discovery~\cite{hey:2009}. Furthermore, it would effect a cultural
 change by reducing overheads and improving the efficiency of
 researchers.
 
