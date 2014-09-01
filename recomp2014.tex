@@ -245,9 +245,9 @@ make the models reusable.
 Once there is a set of tests, there is the issue of how independent
 the tests are from each other.  The concept of ``composability'' is a
 fundamental one in computer science.  Say we have two functions $f : A
-\rightarrow B$ and $g : B \rightarrow C$. Their composition $f \circ g
+\rightarrow B$ and $g : B \rightarrow C$. Their composition $f;g
 : A \rightarrow C$ in some category with structure means that, if $f$
-has property $P$ and $g$ has property $Q$, then $f \circ g$ has
+has property $P$ and $g$ has property $Q$, then $f;g$ has
 property $P \oplus Q$, where $\oplus$ is some combinatorial operator
 in the domain of discourse. What this abstract characterisation means
 is that a program can be tested by testing its parts, whole system
