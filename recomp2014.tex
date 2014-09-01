@@ -243,23 +243,25 @@ anyone to contribute), then the curation is even more necessary to
 make the models reusable.
 
 % fix formatting of definition?
-Once there is a set of tests, there is the issue of how independent or
-un-breakable the set is.  The concept of ``composability'' is a 
-fundamental one in computer science.  That $h = f; g : A \rightarrow C$
-and $f : A \rightarrow B$ and $g : A \rightarrow C$ in some category
-with structure means that, if $f$ has property $P$ and $g$ has
-property $Q$, then $h$ has property $P \oplus Q$, where $\oplus$ is
-some combinatorial operator in the domain of discourse. What this
-abstract characterisation means is that a program can be tested by
-testing its parts, whole system testing can be done by unit testing.
+% SI: back to you, Tom. 
+Once there is a set of tests, there is the issue of how independent
+the tests are from each other.  The concept of ``composability'' is a
+fundamental one in computer science.  Say we have two functions $f : A
+\rightarrow B$ and $g : B \rightarrow C$. Their composition $f;g : A
+\rightarrow C$ in some category with structure means that, if $f$ has
+property $P$ and $g$ has property $Q$, then $f;g$ has property $P \oplus
+Q$, where $\oplus$ is some combinatorial operator in the domain of
+discourse. What this abstract characterisation means is that a program
+can be tested by testing its parts, whole system testing can be done
+by unit testing.
 
 But this is only the case if the system can be decomposed, and we know
-that in many important areas such as machine learning and computational
-science, the models are not often decomposable.  We have not
-been explicit about it -- people normally are not, especially for
+that in many important areas such as machine learning and
+computational science, the models are not often decomposable.  We have
+not been explicit about it -- people normally are not, especially for
 models -- but we have been discussing algorithms and models assuming
-that they are very gross objects. We have not required them to be
-composable or decomposable. What can this mean practically? If we
+that they are very in-divisible objects. We have not required them to
+be composable or decomposable. What can this mean practically? If we
 have an algorithm $A$ that claims to run on model $M$ with result $R$,
 then there is no reason to assume that a slight modification of $A$
 will also have result $R$. Or that $A$ running on a $M * N$, for some
