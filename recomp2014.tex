@@ -58,8 +58,8 @@ performance benchmarks.
 
 % keywords
 \begin{IEEEkeywords}
-Reproducibility, Benchmarks, Models, Cloud Services,
-Computational Science, e-Infrastructure, Open Science
+Reproducibility, Benchmarks, Models, Cloud Services, e-Infrastructure,
+Computational Science, Open Science
 \end{IEEEkeywords}
 
 \IEEEpeerreviewmaketitle
@@ -104,7 +104,10 @@ exploration and drive the adoption of new techniques. Nevertheless,
 this is wider socio-cultural problem that pervades the scientific
 community, with estimates that as much as 50\% of published studies,
 even those in top-tier academic journals, cannot be repeated with the
-same conclusions by an industrial lab~\cite{osherovich:2011}.
+same conclusions by an industrial
+lab~\cite{osherovich:2011}. Furthermore, just publishing (linked)
+scientific data is not enough to ensure the required
+reusability~\cite{bechhofer-et-al:2013}.
 
 Specific examples of the benefits of reproducible workflows to
 researchers are now appearing in the scientific literature. For
@@ -267,14 +270,13 @@ We thus need to be very careful when algorithms are running on models
 automatically and asynchronously (or due to events beyond our
 control), on a global scale, with an effect such as performance
 results that matter to third-parties. Both algorithms and models will
-need careful curating.
-
-Some good examples of such benchmarks are the UCI Machine Learning
-Repository\footnote{\url{http://archive.ics.uci.edu/ml/}}, the 2009
+need careful curating. Some good examples of such benchmarks are the
+UCI Machine Learning
+Repository\footnote{\url{http://archive.ics.uci.edu/ml/}}, 2009
 Netflix Prize benchmarks\footnote{\url{http://www.netflixprize.com/}},
 SMT Competition\footnote{\url{http://smtcomp.sourceforge.net/2014/}},
-SV-COMP\footnote{\url{http://sv-comp.sosy-lab.org/2015/}}, the Answer
-Set Programming
+SV-COMP\footnote{\url{http://sv-comp.sosy-lab.org/2015/}}, Answer Set
+Programming
 Competition\footnote{\url{https://www.mat.unical.it/aspcomp2014/}},
 and the Termination Problem
 Database\footnote{\url{http://termination-portal.org/wiki/TPDB}} are
@@ -308,23 +310,27 @@ assumed knowledge may prevent simple replication by a third party.
 One common approach to tackling complex protocols (or workflows) in
 computational sciences is to automate the process by scripting the
 laborious elements, such as in the Taverna Workflow Management
-System~\cite{taverna:2013}. An specific example for simulating
-molecular dynamics is Sidekick~\cite{Hall2014Sidekick}: in its early
-steps, it builds an initial model of a $\alpha$-helical peptide,
-performs an energy minimisation of the peptide \emph{in vacuo},
-solvates the peptide, adds counter-ions, and runs a second energy
-minimisation. This is all done without any user actions, and the
-subsequent replicates are performed with different random seeds to
-collect accurate statistics. Even in this ideal case however,
-variations may arise between replicates. In testing on a hybrid
-AMD/Intel cluster, one of the authors found that the solvation step
-added a variable number of water molecules. In a molecular dynamics
-simulation, this is sufficient to cause two simulations with otherwise
-identical starting states to diverge over time. As such, the inherent
-properties of the model and simulation should be taken into account in
-the overall protocol design, and noted in any attempts to reproduce
-the behaviour. Building, curating and sharing of scientific workflows
-can provide consistently reusability, but this can require additional
+System~\cite{taverna:2013} for a range of disciplines from
+heliophysics~\cite{leblanc-et-al:2013} to multi-disciplinary design
+optimisation in engineering~\cite{crick-et-al:2009}.
+
+An specific example for simulating molecular dynamics is
+Sidekick~\cite{Hall2014Sidekick}: in its early steps, it builds an
+initial model of a $\alpha$-helical peptide, performs an energy
+minimisation of the peptide \emph{in vacuo}, solvates the peptide,
+adds counter-ions, and runs a second energy minimisation. This is all
+done without any user actions, and the subsequent replicates are
+performed with different random seeds to collect accurate
+statistics. Even in this ideal case however, variations may arise
+between replicates. In testing on a hybrid AMD/Intel cluster, one of
+the authors found that the solvation step added a variable number of
+water molecules. In a molecular dynamics simulation, this is
+sufficient to cause two simulations with otherwise identical starting
+states to diverge over time. As such, the inherent properties of the
+model and simulation should be taken into account in the overall
+protocol design, and noted in any attempts to reproduce the
+behaviour. Building, curating and sharing of scientific workflows can
+provide consistently reusability, but this can require additional
 effort on the scientist.  Workflows are often most effective where
 scientific processes need to be repeatable many times, therefore
 amortising the upfront cost of creating the workflow and its
@@ -417,17 +423,17 @@ Suppose you have come up with a better algorithm to deal with some of
 these benchmarks. You write up the paper on the algorithm but, more
 importantly, you also register the implementation of your algorithm at
 this open service, as a possible algorithm to run on this benchmark
-set.
-
-The benchmarks live in distributed git (or similar) repositories. Some
-of the servers that house these repositories are CI servers. Now, when
-you push a commit to your algorithm, or someone else pushes a commit
-to theirs, or when someone else adds a new benchmarks, the service's
-CI system is triggered. It is also activated with the addition of a
-new library, firmware upgrades, API changes, etc. All registered
-algorithms are run on all registered models, and the results are
-published. The CI servers act as the kernel.org, the authoritative
-source, of results for these algorithms running on these benchmarks.
+set. The benchmarks live in distributed git (or similar)
+repositories. Some of the servers that house these repositories are CI
+servers. Now, when you push a commit to your algorithm, or someone
+else pushes a commit to theirs, or when someone else adds a new
+benchmarks, the service's CI system is triggered. It is also activated
+with the addition of a new library, firmware upgrades, API changes,
+etc. All registered algorithms are run on all registered models, and
+the results are published. The CI servers act as an authoritative
+source, analogous to The Linux Kernel
+Archives\footnote{\url{https://www.kernel.org/}}, of results for these
+algorithms running on these benchmarks.
 
 %such as? do we need examples here?
 There are already several web services that nearly do all of this
@@ -456,7 +462,7 @@ researchers.
 
 
 % balance refs at the end
-\IEEEtriggeratref{2}
+%\IEEEtriggeratref{2}
 
 \bibliographystyle{IEEEtran}
 \bibliography{recomp2014}
