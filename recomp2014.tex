@@ -145,7 +145,7 @@ their work\footnote{e.g. Software Sustainability Institute
 Software Engineers (\url{http://www.rse.ac.uk})}. One fundamental
 barrier to sharing remains -- the overhead in time and effort required
 work with enough information to make models, algorithms and data
-reusable by a third-party can be significant. 
+reusable by a third-party can be significant.
 % (see Figure~\ref{fig:reprodres})
 
 
@@ -242,25 +242,23 @@ benchmarks needs to be curated. If the benchmark is public (allowing
 anyone to contribute), then the curation is even more necessary to
 make the models reusable.
 
-% fix formatting of definition?
-% SI: back to you, Tom. 
 Once there is a set of tests, there is the issue of how independent
 the tests are from each other.  The concept of ``composability'' is a
 fundamental one in computer science.  Say we have two functions $f : A
-\rightarrow B$ and $g : B \rightarrow C$. Their composition $f;g : A
-\rightarrow C$ in some category with structure means that, if $f$ has
-property $P$ and $g$ has property $Q$, then $f;g$ has property $P \oplus
-Q$, where $\oplus$ is some combinatorial operator in the domain of
-discourse. What this abstract characterisation means is that a program
-can be tested by testing its parts, whole system testing can be done
-by unit testing.
+\rightarrow B$ and $g : B \rightarrow C$. Their composition $f \circ g
+: A \rightarrow C$ in some category with structure means that, if $f$
+has property $P$ and $g$ has property $Q$, then $f \circ g$ has
+property $P \oplus Q$, where $\oplus$ is some combinatorial operator
+in the domain of discourse. What this abstract characterisation means
+is that a program can be tested by testing its parts, whole system
+testing can be done by unit testing.
 
 But this is only the case if the system can be decomposed, and we know
 that in many important areas such as machine learning and
 computational science, the models are not often decomposable.  We have
 not been explicit about it -- people normally are not, especially for
 models -- but we have been discussing algorithms and models assuming
-that they are very in-divisible objects. We have not required them to
+that they are truly in-divisible objects. We have not required them to
 be composable or decomposable. What can this mean practically? If we
 have an algorithm $A$ that claims to run on model $M$ with result $R$,
 then there is no reason to assume that a slight modification of $A$
@@ -413,13 +411,14 @@ In the software development world, no one would (should) commit to a
 project without first running the smoke tests. You could be clever and
 run the tests via the version control system's pre-commit hook. That
 way you would never forget to run the tests. All of this can be done,
-at scale, on the cloud now. Services such as Jenkins, Visual Studio
-Online, etc, schedule the tests to run as soon as you commit. We
-envisage moving to a world in which benchmarks become available
-online, in the same vein as open access of publications and research
-data. It seems a small step to hook these Continuous Integration (CI)
-systems up to the algorithm implementations that are written to run on
-these benchmarks.
+at scale, on the cloud now. Services such as
+Jenkins\footnote{\url{http://jenkins-ci.org/}}, Visual Studio
+Online\footnote{\url{http://www.visualstudio.com/en-us/products/what-is-visual-studio-online-vs.aspx}},
+etc, schedule the tests to run as soon as you commit. We envisage
+moving to a world in which benchmarks become available online, in the
+same vein as open access of publications and research data. It seems a
+small step to hook these Continuous Integration (CI) systems up to the
+algorithm implementations that are written to run on these benchmarks.
 
 Suppose you have come up with a better algorithm to deal with some of
 these benchmarks. You write up the paper on the algorithm but, more
@@ -464,7 +463,7 @@ researchers.
 
 
 % balance refs at the end
-\IEEEtriggeratref{7}
+\IEEEtriggeratref{6}
 
 \bibliographystyle{IEEEtran}
 \bibliography{recomp2014}
