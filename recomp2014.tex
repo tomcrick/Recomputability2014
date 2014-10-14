@@ -8,7 +8,7 @@
 \IEEEoverridecommandlockouts
 
 \begin{document}
-\bstctlcite{IEEEexample:BSTcontrol}
+%\bstctlcite{IEEEexample:BSTcontrol}
 
 \title{``Share and Enjoy'':\\Publishing Useful and Usable Scientific Models}
 
@@ -36,7 +36,7 @@ hot topic within the academic community. The retraction of numerous
 studies from a wide range of disciplines, from climate science to
 bioscience, has drawn the focus of many commentators, but there exists
 a wider socio-cultural problem that pervades the scientific community.
-Sharing data and models often requires extra effort, and this is
+Sharing code, data and models often requires extra effort; this is
 currently seen as a significant overhead that may not be worth the
 time investment.
 
@@ -88,12 +88,18 @@ algorithms.  We conclude with thoughts on where efforts should be
 focused in both the short- and long-term to move to a world in which
 computational reproducibility helps researchers achieve their goals,
 rather than being perceived as an overhead.
-% SI: are we doing this yet?
 
 %\section{Motivation}
-The reproduction and replication of reported scientific results is a
-widely discussed topic within the scientific
-community~\cite{barnes:2010,morin-et-al:2012,joppa-et-al:2013}.
+We have seen a step-change in how science and engineering is
+done. Experiments, simulations, models, benchmarks, even proofs cannot
+be done without leveraging software and computation. A 2012 report by
+the Royal Society stated that computational techniques have
+``{\emph{moved on from assisting scientists in doing science, to
+transforming both how science is done and what science is
+done}}''~\cite{rssaaoe:2012}. Thus, the reproduction and replication
+of reported scientific results is a widely discussed topic within the
+scientific
+community~\cite{barnes:2010,morin-et-al:2012,joppa-et-al:2013,goble:2014}.
 Whilst the retraction of several studies has drawn the focus of many
 commentators, automated systems, which allow easy reproduction of
 results, offer the potential to improve the efficiency of scientific
@@ -136,15 +142,13 @@ there remain cultural and technical barriers to both the sharing and
 reimplementation of algorithms~\cite{crick-et-al_wssspe2}. These
 include widely discussed topics, such as choices of programming
 language and software licence, as well as unreported technical details
-of the implementations and ensuring that developers get credit for
-their work\footnote{e.g. Software Sustainability Institute
-(\url{http://www.software.ac.uk}) and the UK Community of Research
-Software Engineers (\url{http://www.rse.ac.uk})}. One fundamental
-barrier to sharing remains -- the overhead in time and effort required
-%work with enough information 
-to make models, algorithms and data reusable by a third-party can be significant.
-% (see Figure~\ref{fig:reprodres})
-
+of the implementations and ensuring that research software developers
+get credit for their work\footnote{e.g. Software Sustainability
+Institute (\url{http://www.software.ac.uk}) and the UK Community of
+Research Software Engineers (\url{http://www.rse.ac.uk})}. One
+fundamental barrier to sharing remains: the overhead in time and
+effort required to make models, algorithms and data reusable by a
+third-party can be significant.
 
 % SI: Don't use without permission. 
 % \begin{figure}[!ht]
@@ -162,7 +166,7 @@ pseudo-random number generation, floating-point rounding behaviour and
 order-of-execution, may affect benchmark results. Furthermore, for
 high performance computing applications, repeating benchmark results
 may not be possible by other groups without identical hardware
-resources. Here we extend a previous
+platforms and environments. Here we extend a previous
 proposal~\cite{crick-et-al_wssspe2} by specifically discussing the
 problems posed by models, considering the issues surrounding sharing
 and analysing benchmark sets.
@@ -173,11 +177,11 @@ and analysing benchmark sets.
 \subsection{Abstraction levels} 
 
 A model describes reality at some level of abstraction. The more
-detailed it is, the more `faithful' it often purports to be, but also
-then the more special-purpose (and potentially less useful to many others). It is
-an important aspect of the modelling task as to what level (abstract
-vs. concrete) to model at. But often it is implicit, embodied but not
-embedded, in the model.
+detailed it is, the more ``faithful'' it often purports to be, but
+also then the more special-purpose (and potentially less useful to
+others). It is an important aspect of the modelling task as to what
+level (abstract vs. concrete) to model at. But often it is implicit,
+embodied but not embedded, in the model.
 
 % Published models require basic information to allow the models to be
 % explored. On the most basic level, this can include techniques to
@@ -194,17 +198,16 @@ integer for the update. This can be done in the target function
 itself, but if the function returns a float, the specific
 implementation dictates if this is a rounding, floor or ceiling
 function. This implicit (to the model) but specific (from the
-implementation) may change the results of the modelling.
+implementation) may change the results of the modelling. Another case
+of showing how the implementation of qualitative networks may change
+the model is the treatment of variable ranges within the model.
+Whilst the formalism allows the variables in a model to have differing
+ranges of integers, the mechanism of conversion is not specified in
+the formalism. As such, this is another area where implementations can
+dictate the precise behaviour of the model, and thus needs to be
+explicitly annotated on the model.
 
-Another case of showing how the implementation of qualitative networks
-may change the model is the treatment of variable ranges within the
-model.  Whilst the formalism allows the variables in a model to have
-differing ranges of integers, the mechanism of conversion is not
-specified in the formalism. As such, this is another area where
-implementations can dictate the precise behaviour of the model, and
-thus needs to be explicitly annotated on the model.
-
-A final example is the handling of pseudo-random number generation in
+A further example is the handling of pseudo-random number generation in
 Avida~\cite{ofria+wilke:2004}, an open source scientific software
 platform for conducting and analysing experiments with
 self-replicating and evolving computer programs. In order to produce
@@ -250,8 +253,8 @@ is that a program can be tested by testing its parts, whole system
 testing can be done by unit testing.
 
 But this is only the case if the system can be decomposed, and we know
-that in many important areas such as machine learning and
-computational science, the models are not often decomposable.  We have
+that in many important areas, such as machine learning and
+computational science, the models are often not decomposable.  We have
 not been explicit about it -- people normally are not, especially for
 models -- but we have been discussing algorithms and models assuming
 that they are truly in-divisible objects. We have not required them to
@@ -364,9 +367,10 @@ performance computing where scalability of code
 NAMD\footnote{\url{http://www.ks.uiuc.edu/Research/namd/}},
 Desmond\footnote{\url{http://www.deshawresearch.com/resources_desmond.html}}). Here
 the aim is to make simulations run more efficiently over large numbers
-of cores/nodes. On-demand cloud resources such as Microsoft Azure and
-Amazon Elastic Compute Cloud offer a potentially attractive (and
-cost-effective) route to reproducing computational experiments.
+of cores/nodes. On-demand cloud resources such as Amazon Elastic
+Compute Cloud, Google Compute Engine and Microsoft Azure offer
+potentially attractive (and cost-effective) route to reproducing
+computational experiments.
 
 An important question is which performance metric to use. Wall clock
 time is commonly used, but this does not allow for long-term
@@ -375,7 +379,7 @@ time. This is true whether the underlying hardware the software is
 running on is physical or virtual hardware. Some ``op count'' is a
 more interesting measure. In many cases, the cost of hardware and
 system artefacts are important but often overlooked, such as for
-solvers in Answer Set Programming~\cite{brain+devos:2009}. Also, other
+solvers in logic programming~\cite{brain+devos:2009}. Also, other
 structural properties of the models the algorithms are running on, are
 more interesting. In the field of systems biology, whether an
 algorithm can prove properties like termination, stability,
@@ -398,10 +402,10 @@ runtime performance regarded as a secondary issue.
 
 The whole premise of this paper is that {\emph{algorithms}}
 (implementations) and {\emph{models}} (benchmarks) are inextricably
-linked and should go together. Algorithms are designed for certain
-types of models; models, though created to mimic some physical
-reality, also serve to stress the current known algorithms. An
-integrated autonomous cloud-based service can make this link explicit.
+linked. Algorithms are designed for certain types of models; models,
+though created to mimic some physical reality, also serve to stress
+the current known algorithms. An integrated autonomous cloud-based
+service can make this link explicit.
 
 In the software development world, no one would (should) commit to a
 project without first running the smoke tests. You could be clever and
@@ -413,7 +417,7 @@ Online\footnote{\url{http://www.visualstudio.com/en-us/products/what-is-visual-s
 etc, schedule the tests to run as soon as you commit. We envisage
 moving to a world in which benchmarks become available online, in the
 same vein as open access of publications and research data. It seems a
-small step to hook these Continuous Integration (CI) systems up to the
+small step to hook these continuous integration (CI) systems up to the
 algorithm implementations that are written to run on these benchmarks.
 
 Suppose you have come up with a better algorithm to deal with some of
@@ -424,19 +428,22 @@ set. The benchmarks live in distributed git (or similar)
 repositories. Some of the servers that house these repositories are CI
 servers. Now, when you push a commit to your algorithm, or someone
 else pushes a commit to theirs, or when someone else adds a new
-benchmarks, the service's CI system is triggered. It is also activated
-with the addition of a new library, firmware upgrades, API changes,
+benchmark, the service's CI system is triggered. It is also activated
+with the addition of a new library, firmware upgrade, API change,
 etc. All registered algorithms are run on all registered models, and
 the results are published. The CI servers act as an authoritative
 source, analogous to the Linux Kernel
 Archives\footnote{\url{https://www.kernel.org/}}, of results for these
 algorithms running on these benchmarks.
 
-%such as? do we need examples here?
+% other examples?
 There are already several web services that nearly do all of this
-things. We feel that a service that can integrate some of these
-features is possible. Such a service would then allow algorithms and
-models to evolve together, and always be reproducible.
+things (for example, a repository for disseminating the computational
+models associated with publications in the social and life
+sciences~\cite{rollins-et-al:2014}), so a service that can integrate
+most if not all of these features is possible. Such a service would
+then allow algorithms and models to evolve together, and be
+reproducible from the outset.
 
 A system as described here has several up-front benefits: it links
 papers more closely to their outputs, making external validation
@@ -453,13 +460,13 @@ impact on the way that computational science is performed,
 repositioning the role of models, algorithms and benchmarks and
 accelerating the research cycle, perhaps truly enabling a ``fourth
 paradigm'' of data intensive scientific
-discovery~\cite{hey:2009}. Furthermore, it would effect a cultural
-change by reducing overheads and improving the efficiency of
+discovery~\cite{hey:2009}. Furthermore, it would effect the vital
+cultural change by reducing overheads and improving the efficiency of
 researchers.
 
 
 % balance refs at the end
-\IEEEtriggeratref{6}
+\IEEEtriggeratref{25}
 
 \bibliographystyle{IEEEtran}
 \bibliography{recomp2014}
