@@ -1,0 +1,171 @@
+\documentclass[pdftex]{beamer}
+\usepackage[british]{babel}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage[normalem]{ulem}
+\usepackage{tikz}
+\usetikzlibrary{mindmap,trees}
+
+\mode<presentation>
+\usetheme{Warsaw}
+\useoutertheme{infolines}
+
+\setbeamertemplate{navigation symbols}{}
+% \usebeamertemplate*{logo}
+% \logo{\includegraphics[height=0.85cm]{cmetlogo.png}}
+
+
+\title[Recomputability 2014]{``Share and Enjoy'': Publishing Useful and Usable Scientific Models}
+\author[\#recomp14]{Tom Crick$^1$, Benjamin A. Hall$^2$, Samin Ishtiaq$^3$ and Kenji Takeda$^3$}
+\institute[@DrTomCrick]{$^1$ Department of Computing, Cardiff
+  Metropolitan University\\$^2$ MRC Cancer Unit, University of
+  Cambridge\\$^3$ Microsoft Research Cambridge}
+\date{11 December 2014}
+
+\begin{document}
+
+% titlepage
+\begin{frame}
+\titlepage
+\end{frame}
+
+% TOC
+% \section*{Talk Outline} 
+% \begin{frame} 
+% \tableofcontents 
+% \end{frame} 
+
+\section{Motivation}
+
+\begin{frame}
+\frametitle{Our Computational World}
+%\begin{alertblock}{The future?}
+{\Large{{\emph{``[Computational techniques] have moved on from assisting scientists in 
+doing science, to transforming both how science is 
+done and what science is done.''}}}}\\
+\flushright{{\emph{Science as an open enterprise}, Royal Society (June 2012)}\\
+{\scriptsize{\url{https://royalsociety.org/policy/projects/science-public-enterprise/}}}}
+%\end{alertblock}
+\end{frame}
+
+
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[width=0.9\paperwidth]{overlyhonesttweet.png}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[width=0.9\paperwidth]{phd031214s.png}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+
+\section{Models, Algorithms and Benchmarks}
+
+\begin{frame}
+\frametitle{Sharing}
+Two key types of results arise from work done in the computational sciences:
+\begin{itemize}
+\item Models
+\item Algorithms
+\end{itemize}
+\vspace{1em}
+Fundamental advantage of computer science and more broadly,
+computational science: {\textbf{the unique ability to share the raw outputs of
+their research as software and datafiles.}}
+\end{frame}
+
+\begin{frame}
+\frametitle{Models, Algorithms and Benchmarks}
+\begin{itemize}
+\item Abstraction levels ({\scriptsize{abstract vs. concrete}})
+\item Benchmark repositories\\({\scriptsize{e.g. UCI Machine Learning Repository, Netflix Prize benchmarks, SMT Competition, SV-COMP, Answer Set Programming Competition and the Termination Problem Database.}})
+\item Protocols as scripts ({\scriptsize{workflow reproducibility e.g. molecular dynamics}})
+\item Performance and scalability ({\scriptsize{is performance a key issue?}})
+\end{itemize}
+\pause
+\vspace{1em}{\textbf{We propose to develop a prototype open software platform which will automate reproducibility for algorithms and models.}}
+\end{frame}
+
+
+\section{A System for Automating Reproducibility}
+
+\begin{frame}
+\frametitle{A System for Automating Reproducibility in Science}
+\begin{itemize}
+\item Linking open software, algorithms and models
+\item Open and community-curated benchmarks
+\item Integrated continuous integration system: authoritative source of results for these algorithms running on these benchmarks.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Proposed Workflow}
+\begin{center}
+\includegraphics[width=0.9\paperwidth]{workflow.png}
+\end{center}
+\end{frame}
+
+\section{Future}
+
+\begin{frame}
+\frametitle{A System for Automating Reproducibility in Science}
+{\small{\begin{itemize}
+\item Build a cloud service which automatically pulls and compiles code from source repos;
+\item Run automated tests defined by the developers on the code;
+\item Perform analysis of benchmark sets supplied by both the developer and external users;
+\item Provide persistent audit trails for software and benchmarks
+  results;
+\item Collaborate with key stakeholders in the open software/open
+  data/open access/open science space, as well as key e-infrastructure
+  organisations e.g. GitHub, figshare, SSI, Mozilla Science Lab,
+  Digital Science, etc.
+\item {\textbf{Key:}} engage with key communities to embed system/workflow and effect
+  cultural change.
+\end{itemize}}}
+\end{frame}
+
+
+\section{Acknowledgements}
+
+\begin{frame}
+\frametitle{Acknowledgements}
+\begin{center}
+\includegraphics[width=0.9\paperwidth]{ssi.png}
+\end{center}
+\end{frame}
+
+
+\section{References}
+
+\begin{frame}
+\frametitle{References}
+{\small{\begin{itemize}
+\item Tom Crick, Benjamin A. Hall, Samin Ishtiaq and Kenji
+  Takeda. {\emph{``Share and Enjoy'': Publishing Useful and Usable
+      Scientific Models}}. In 1st International Workshop on
+  Recomputability, 2014: \url{http://arxiv.org/abs/1409.0367}
+\item Tom Crick, Benjamin A. Hall and Samin Ishtiaq. {\emph{``Can I Implement
+  Your Algorithm?'': A Model for Reproducible Research Software}}. In
+  Proceedings of 2nd International Workshop on Sustainable Software
+  for Science: Practice and Experiences (WSSSPE2), 2014:
+  \url{http://arxiv.org/abs/1407.5981}
+\item Digital Science Catalyst Grant (Nov 2014):
+  \url{https://github.com/tomcrick/DSCatalyst} 
+\item Microsoft Azure for Research Grant (Dec 2014):
+  \url{https://github.com/tomcrick/Azure4Research} 
+\end{itemize}}}
+\end{frame}
+
+\end{document}
